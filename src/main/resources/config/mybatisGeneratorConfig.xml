@@ -15,7 +15,7 @@
 
     <!-- 数据库驱动包位置 -->
     <classPathEntry
-        location="/Users/themac/applications/the_software/maven/apache-maven-3.5.4/repository/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar"/>
+        location="/opt/apache-maven-3.5.4/download/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar"/>
 
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
         <!-- TKmybatis配置 -->
@@ -34,33 +34,33 @@
         </commentGenerator>
         <!-- 数据库链接URL、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-            connectionURL="jdbc:mysql://192.168.0.150:3306/lumi_retail?useUnicode=true&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;tinyInt1isBit=false&amp;nullNamePatternMatchesAll=true"
+            connectionURL="jdbc:mysql://127.0.0.1:3306/theOlds?useUnicode=true&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;tinyInt1isBit=false&amp;nullNamePatternMatchesAll=true"
             userId="root" password="root"/>
         <!-- 生成模型的包名和位置 targetProject是相对路径或绝对路径-->
-        <javaModelGenerator targetPackage="com.lumi.retail.web.entity"
+        <javaModelGenerator targetPackage="com.theoldsweb.myweb.common.entity"
             targetProject="src/main/java"/>
         <!-- 生成的映射文件包名和位置 targetProject是相对路径或绝对路径-->
         <sqlMapGenerator targetPackage="sqlMap" targetProject="src/main/resources"/>
         <!-- 生成service的包名和位置 targetProject是相对路径或绝对路径-->
-        <javaClientGenerator targetPackage="com.lumi.retail.web.mapper"
+        <javaClientGenerator targetPackage="com.theoldsweb.myweb.web.mapper"
             targetProject="src/main/java" type="XMLMAPPER"/>
 
         <!-- 要生成的表（可以使用多个table标签生成多张表） -->
-        <table tableName="connect_dict_data_convert"
-            domainObjectName="ConnectDictDataConvert"></table>
+        <!--<table tableName="connect_dict_data_convert"-->
+            <!--domainObjectName="ConnectDictDataConvert"></table>-->
 
-        <table tableName="connect_biz_data_convert"
-            domainObjectName="ConnectBizDataConvert"></table>
+        <!--<table tableName="connect_biz_data_convert"-->
+            <!--domainObjectName="ConnectBizDataConvert"></table>-->
 
-        <table tableName="connect_origin_data" domainObjectName="ConnectOriginData"></table>
+        <!--<table tableName="connect_origin_data" domainObjectName="ConnectOriginData"></table>-->
 
-        <table tableName="retail_module" domainObjectName="RetailModule"></table>
+        <!--<table tableName="retail_module" domainObjectName="RetailModule"></table>-->
 
-        <table tableName="connect_task" domainObjectName="ConnectTask"></table>
+        <!--<table tableName="connect_task" domainObjectName="ConnectTask"></table>-->
 
-        <table tableName="work_order_install_state"
-            domainObjectName="WorkOrderInstallState"></table>
+        <!--<table tableName="work_order_install_state"-->
+            <!--domainObjectName="WorkOrderInstallState"></table>-->
 
-        <table tableName="retail_url" domainObjectName="RetailUrl"></table>
+        <table tableName="user_table" domainObjectName="usertable"></table>
     </context>
 </generatorConfiguration>
