@@ -61,6 +61,6 @@
         <!--<table tableName="work_order_install_state"-->
             <!--domainObjectName="WorkOrderInstallState"></table>-->
 
-        <table tableName="user_table" domainObjectName="usertable"></table>
+        <table tableName="user_tb" domainObjectName="usertb"></table>
     </context>
 </generatorConfiguration>
