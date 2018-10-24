@@ -35,7 +35,7 @@
         <!-- 数据库链接URL、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
             connectionURL="jdbc:mysql://127.0.0.1:3306/theOlds?useUnicode=true&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;tinyInt1isBit=false&amp;nullNamePatternMatchesAll=true"
-            userId="root" password="root"/>
+            userId="debian-sys-maint" password="onR8ei1BQ6yg7FfE"/>
         <!-- 生成模型的包名和位置 targetProject是相对路径或绝对路径-->
         <javaModelGenerator targetPackage="com.theoldsweb.myweb.common.entity"
             targetProject="src/main/java"/>

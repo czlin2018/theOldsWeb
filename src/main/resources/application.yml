@@ -8,8 +8,8 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/theOlds?serverTimezone=Asia/Shanghai&useUnicode=true&useSSL=false&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&rewriteBatchedStatements=true
-    username: root
-    password: root
+    username: debian-sys-maint
+    password: onR8ei1BQ6yg7FfE
 #配置端口
 server:
   port: 9090
