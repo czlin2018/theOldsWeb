@@ -1,7 +1,6 @@
 package com.theoldsweb.myweb.common.dto;
-
-
 import lombok.Data;
+import java.util.Date;
 
 @Data
 public class userDao {
@@ -19,5 +18,9 @@ public class userDao {
 
     private Integer userPhoneNumber;
 
+    private Date createTime;
+
+
+    private Date updateTime;
 
 }

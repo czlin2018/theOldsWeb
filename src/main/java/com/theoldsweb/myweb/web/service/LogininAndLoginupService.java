@@ -21,6 +21,9 @@ import org.springframework.stereotype.Service;
 public class LogininAndLoginupService {
     @Autowired
     private usertbMapper usertbMapper;
+/**
+ * 登陆
+ */
 
     public ResultDto login(userDao userDao){
         usertb usertb=new usertb();
@@ -32,16 +35,36 @@ public class LogininAndLoginupService {
             return new ResultDto(0, "登录失败");
         }
     }
+/**
+ * 注册
+ */
 
     public ResultDto logup(userDao userDao){
         usertb usertb=new usertb();
         BeanCopyUtil.copy(userDao,usertb);
         usertb.setUserId( dateApi.getTimeId( ) );
+        usertb.setCreateTime( dateApi.currentDateTime() );
+        usertb.setUpdateTime( dateApi.currentDateTime() );
         int count=usertbMapper.insert(usertb);
         if(count!=0){
             return new ResultDto(0, "注册成功");
         }else {
             return new ResultDto(0, "注册失败");
+        }
+
+    }
+    /**
+     * 修改
+     */
+    public ResultDto updateByUserId(userDao userDao){
+        usertb usertb=new usertb();
+        BeanCopyUtil.copy(userDao,usertb);
+        usertb.setUpdateTime( dateApi.currentDateTime() );
+        int count=usertbMapper.updateByPrimaryKeySelective(usertb);
+        if(count!=0){
+            return new ResultDto(0, "修改成功");
+        }else {
+            return new ResultDto(0, "修改失败");
         }
 
     }

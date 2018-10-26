@@ -27,12 +27,26 @@ public class LogininAndLoginupController {
 
     @Autowired
     private LogininAndLoginupService logininAndLoginupService;
+    /**
+     * 登陆
+     */
     @PostMapping(Url.user.login)
     public ResultDto loginIn  (@RequestBody userDao userDao){
         return logininAndLoginupService.login(userDao);
     }
+    /**
+     * 注册
+     */
+
     @PostMapping(Url.user.logUp)
         public ResultDto loginUp  (@RequestBody userDao userDao){
         return logininAndLoginupService.logup(userDao);
+    }
+    /**
+     * 修改密码
+     */
+    @PostMapping(Url.user.update)
+    public ResultDto updateByUserId  (@RequestBody userDao userDao){
+        return logininAndLoginupService.updateByUserId(userDao);
     }
 }
