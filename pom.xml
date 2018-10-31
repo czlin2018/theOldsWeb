@@ -47,7 +47,7 @@
             <version>5.1.7</version>
         </dependency>
         <!--通用Mapper-->
-
+        <!--反响工程需要关闭-->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
@@ -93,7 +93,7 @@
                         <version>1.3.3</version>
                     </dependency>
 
-
+                    <!--反响工程需要打开-->
                     <!--<dependency>-->
                         <!--<groupId>tk.mybatis</groupId>-->
                         <!--<artifactId>mapper</artifactId>-->

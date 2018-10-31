@@ -6,6 +6,8 @@ import com.theoldsweb.myweb.common.config.SysExcCode;
 import com.theoldsweb.myweb.common.dto.PageDto;
 import com.theoldsweb.myweb.common.dto.ResultDto;
 import com.theoldsweb.myweb.common.entity.test_user;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,7 @@ import java.util.List;
  * @创建日期: 2018-10-19
  * @创建时间: 下午4:01
  */
+@Service
 public class test_Service {
 
     public static ResultDto get(PageDto pageDto){

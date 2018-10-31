@@ -15,8 +15,13 @@ spring:
 #配置端口
 server:
   port: 8080
-  servlet:
-    context-path: /theOldsWeb
+
 logging:
   level:
     com.theoldsweb.myweb.web.mapper: debug
+mybatis:
+  mapper-locations: classpath:sqlMap/tourtbMapper.xml,
+                    classpath:sqlMap/usertbMapper.xml,
+                    classpath:sqlMap/commentstbMapper.xml
+  configuration:
+    mapUnderscoreToCamelCase: true

@@ -34,8 +34,8 @@
         </commentGenerator>
         <!-- 数据库链接URL、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-            connectionURL="jdbc:mysql://127.0.0.1:3306/theOlds?useUnicode=true&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;tinyInt1isBit=false&amp;nullNamePatternMatchesAll=true"
-            userId="debian-sys-maint" password="onR8ei1BQ6yg7FfE"/>
+            connectionURL="jdbc:mysql://47.106.36.62:3306/theOlds?useUnicode=true&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;tinyInt1isBit=false&amp;nullNamePatternMatchesAll=true"
+            userId="root" password="root"/>
         <!-- 生成模型的包名和位置 targetProject是相对路径或绝对路径-->
         <javaModelGenerator targetPackage="com.theoldsweb.myweb.common.entity"
             targetProject="src/main/java"/>
@@ -46,21 +46,11 @@
             targetProject="src/main/java" type="XMLMAPPER"/>
 
         <!-- 要生成的表（可以使用多个table标签生成多张表） -->
-        <!--<table tableName="connect_dict_data_convert"-->
-            <!--domainObjectName="ConnectDictDataConvert"></table>-->
 
-        <!--<table tableName="connect_biz_data_convert"-->
-            <!--domainObjectName="ConnectBizDataConvert"></table>-->
+        <!--<table tableName="user_tb" domainObjectName="usertb"></table>-->
+        <table tableName="tour_tb" domainObjectName="tourtb"></table>
+        <table tableName="comments_tb" domainObjectName="commentstb"></table>
+        <table tableName="area_tb" domainObjectName="areatb"></table>
 
-        <!--<table tableName="connect_origin_data" domainObjectName="ConnectOriginData"></table>-->
-
-        <!--<table tableName="retail_module" domainObjectName="RetailModule"></table>-->
-
-        <!--<table tableName="connect_task" domainObjectName="ConnectTask"></table>-->
-
-        <!--<table tableName="work_order_install_state"-->
-            <!--domainObjectName="WorkOrderInstallState"></table>-->
-
-        <table tableName="user_tb" domainObjectName="usertb"></table>
     </context>
 </generatorConfiguration>
