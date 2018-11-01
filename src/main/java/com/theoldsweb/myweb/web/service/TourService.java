@@ -3,11 +3,12 @@ package com.theoldsweb.myweb.web.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.theoldsweb.myweb.common.api.BeanCopyUtil;
+import com.theoldsweb.myweb.common.api.dateApi;
 import com.theoldsweb.myweb.common.config.SysExcCode;
-import com.theoldsweb.myweb.common.dto.PageDto;
-import com.theoldsweb.myweb.common.dto.ResultDto;
+import com.theoldsweb.myweb.common.config.PageDto;
+import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.dto.TourtbDto;
-import com.theoldsweb.myweb.common.dto.commensdDto;
+import com.theoldsweb.myweb.common.dto.commentsDto;
 import com.theoldsweb.myweb.common.entity.areatb;
 import com.theoldsweb.myweb.common.entity.tourtb;
 import com.theoldsweb.myweb.web.mapper.tourtbMapper;
@@ -50,7 +51,7 @@ public class TourService {
             if ( areatb!=null ){
             tourtbDto.setTourAreaName( areatb.getTourAreaName() );}
             //查询评价
-            List <commensdDto> commentstbList=commentstbMapper.selectByComments( tourtbDto.getTourCommentsId( ) );
+            List <commentsDto> commentstbList=commentstbMapper.selectByComments( tourtbDto.getTourCommentsId( ) );
             tourtbDto.setTourComments( commentstbList );
         }
 
@@ -65,11 +66,42 @@ public class TourService {
     public ResultDto insert( TourtbDto tourtbDto ){
         tourtb tourtb=new tourtb();
         BeanCopyUtil.copy( tourtbDto,tourtb );
+        tourtb.setTourId( "t"+dateApi.getTimeId( ) );
+        tourtb.setTourCommentsId( tourtb.getTourId());
+        tourtb.setCreateTime( dateApi.currentDateTime() );
+        tourtb.setUpdateTime( dateApi.currentDateTime() );
+        tourtb.setTourGivealike( 0 );
+        tourtb.setTourCommentsNum( 0 );
         int insert=tourtbMapper.insert( tourtb );
         if(insert>0){
             return new ResultDto( 0,"添加成功" );
         }else
             return new ResultDto( 0,"失败成功" );
+
+    }
+
+    public ResultDto selectByOne( TourtbDto tourtbDto1 ){
+        PageDto pageDto=new PageDto(  );
+        List <TourtbDto>tourDtoList=tourtbMapper.selectByOne(tourtbDto1);
+        for ( TourtbDto tourtbDto : tourDtoList ) {
+            if(tourtbDto.getTourCountryId()==1){
+                tourtbDto.setTourCountryName( "国内" );
+            }else{
+                tourtbDto.setTourCountryName( "国外" );
+            }
+            //查询地区
+            areatb areatb=areatbMapper.selectByPrimaryKey( tourtbDto.getTourAreaId( ) );
+            if ( areatb!=null ){
+                tourtbDto.setTourAreaName( areatb.getTourAreaName() );}
+            //查询评价
+            List <commentsDto> commentstbList=commentstbMapper.selectByComments( tourtbDto.getTourCommentsId( ) );
+            tourtbDto.setTourComments( commentstbList );
+        }
+
+        Page<Object> objectPage = PageHelper.startPage(pageDto.getPageNo(), pageDto.getPageSize());
+        pageDto.setTotalCount(objectPage.getTotal());
+        pageDto.setPageData(tourDtoList);
+        return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS, pageDto);
 
     }
 }

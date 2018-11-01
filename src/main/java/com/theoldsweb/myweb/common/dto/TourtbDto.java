@@ -16,6 +16,8 @@ import java.util.List;
 @Data
 public class TourtbDto {
 
+    private Integer selectType;
+
     private Integer id;
 
 
@@ -34,7 +36,9 @@ public class TourtbDto {
     /**
      * 关联评论表,用评论表,评论id
      */
-    private Integer tourCommentsId;
+    private String tourCommentsId;
+
+    private Integer tourCommentsNum;
 
     private List tourComments;
 
@@ -59,5 +63,5 @@ public class TourtbDto {
     private String  createTime;
 
 
-    private String  udateTime;
+    private String  updateTime;
 }

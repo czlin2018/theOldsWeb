@@ -2,7 +2,7 @@ package com.theoldsweb.myweb.web.service;
 
 import com.theoldsweb.myweb.common.api.BeanCopyUtil;
 import com.theoldsweb.myweb.common.api.dateApi;
-import com.theoldsweb.myweb.common.dto.ResultDto;
+import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.dto.userDao;
 import com.theoldsweb.myweb.common.entity.usertb;
 import com.theoldsweb.myweb.web.mapper.usertbMapper;
@@ -43,7 +43,7 @@ public class LogininAndLoginupService {
     public ResultDto logup(userDao userDao){
         usertb usertb=new usertb();
         BeanCopyUtil.copy(userDao,usertb);
-        usertb.setUserId( dateApi.getTimeId( ) );
+        usertb.setUserId( "c"+dateApi.getTimeId( ) );
         usertb.setCreateTime( dateApi.currentDateTime() );
         usertb.setUpdateTime( dateApi.currentDateTime() );
         int count=usertbMapper.insert(usertb);

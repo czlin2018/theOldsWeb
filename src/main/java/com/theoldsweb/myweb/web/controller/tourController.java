@@ -1,9 +1,8 @@
 package com.theoldsweb.myweb.web.controller;
 
-import com.theoldsweb.myweb.common.dto.PageDto;
-import com.theoldsweb.myweb.common.dto.ResultDto;
+import com.theoldsweb.myweb.common.config.PageDto;
+import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.dto.TourtbDto;
-import com.theoldsweb.myweb.common.dto.commensdDto;
 import com.theoldsweb.myweb.common.url.Url;
 import com.theoldsweb.myweb.web.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +33,11 @@ public class tourController {
     @PostMapping(value=Url.tour.insert)
     public ResultDto insert ( @RequestBody TourtbDto tourtbDto ){
         return toutService.insert(tourtbDto);
+    }
+
+    @PostMapping(value=Url.tour.selectByOne)
+    public ResultDto selectByOne ( @RequestBody TourtbDto tourtbDto ){
+        return toutService.selectByOne(tourtbDto);
     }
 
 }

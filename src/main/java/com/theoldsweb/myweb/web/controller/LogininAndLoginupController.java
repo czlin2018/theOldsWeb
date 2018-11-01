@@ -1,15 +1,10 @@
 package com.theoldsweb.myweb.web.controller;
 
-import com.theoldsweb.myweb.common.dto.PageDto;
-import com.theoldsweb.myweb.common.dto.ResultDto;
+import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.dto.userDao;
-import com.theoldsweb.myweb.common.entity.usertb;
 import com.theoldsweb.myweb.common.url.Url;
 import com.theoldsweb.myweb.web.service.LogininAndLoginupService;
-import com.theoldsweb.myweb.web.service.test_Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +38,7 @@ public class LogininAndLoginupController {
         return logininAndLoginupService.logup(userDao);
     }
     /**
-     * 修改密码
+     * 修改(密码)
      */
     @PostMapping(Url.user.update)
     public ResultDto updateByUserId  (@RequestBody userDao userDao){

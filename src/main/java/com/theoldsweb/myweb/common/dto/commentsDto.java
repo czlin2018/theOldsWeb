@@ -11,7 +11,7 @@ import lombok.Data;
  * @创建时间: 下午12:21
  */
 @Data
-public class commensdDto {
+public class commentsDto {
     private Integer id;
 
 
@@ -19,4 +19,10 @@ public class commensdDto {
 
 
     private String tourComments;
+
+    private String  createTime;
+
+
+    private String  updateTime;
+
 }

@@ -22,4 +22,10 @@ public class areaDto {
 
     private Integer tourCountryId;
 
+
+    private String  createTime;
+
+
+    private String  updateTime;
+
 }
