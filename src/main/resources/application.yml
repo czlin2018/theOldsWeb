@@ -25,3 +25,8 @@ mybatis:
                     classpath:sqlMap/commentstbMapper.xml
   configuration:
     mapUnderscoreToCamelCase: true
+qiniu:
+  accessKey: 1
+  secretKey: 2
+  bucket: 3
+  path: 4

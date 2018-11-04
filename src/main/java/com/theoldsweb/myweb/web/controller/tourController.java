@@ -1,15 +1,18 @@
 package com.theoldsweb.myweb.web.controller;
 
+import com.qiniu.common.Constants;
+import com.theoldsweb.myweb.common.api.QiniuUtil;
 import com.theoldsweb.myweb.common.config.PageDto;
 import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.dto.TourtbDto;
 import com.theoldsweb.myweb.common.url.Url;
 import com.theoldsweb.myweb.web.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 
 /**
  * @描述:
@@ -38,6 +41,19 @@ public class tourController {
     @PostMapping(value=Url.tour.selectByOne)
     public ResultDto selectByOne ( @RequestBody TourtbDto tourtbDto ){
         return toutService.selectByOne(tourtbDto);
+    }
+
+    /**
+     * 上传文件到七牛云存储
+     * @param multipartFile
+     * @return
+     */
+    @PutMapping("/article/img/qiniu")
+    public String uploadImgQiniu(@RequestParam("editormd-image-file") MultipartFile multipartFile) throws IOException{
+        FileInputStream inputStream = (FileInputStream) multipartFile.getInputStream();
+        //User currentUser = userService.getCurrentUser();
+        String path = QiniuUtil.uploadImg(inputStream, ""+"czl");
+        return path;
     }
 
 }
