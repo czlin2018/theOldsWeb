@@ -1,7 +1,7 @@
 package com.theoldsweb.myweb.web.controller;
 
 import com.theoldsweb.myweb.common.config.ResultDto;
-import com.theoldsweb.myweb.common.dto.userDao;
+import com.theoldsweb.myweb.common.dto.userDto;
 import com.theoldsweb.myweb.common.url.Url;
 import com.theoldsweb.myweb.web.service.LogininAndLoginupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class LogininAndLoginupController {
      * 登陆
      */
     @PostMapping(Url.user.login)
-    public ResultDto loginIn  (@RequestBody userDao userDao){
+    public ResultDto loginIn  (@RequestBody userDto userDao){
         return logininAndLoginupService.login(userDao);
     }
     /**
@@ -34,14 +34,14 @@ public class LogininAndLoginupController {
      */
 
     @PostMapping(Url.user.logUp)
-        public ResultDto loginUp  (@RequestBody userDao userDao){
+        public ResultDto loginUp  (@RequestBody userDto userDao){
         return logininAndLoginupService.logup(userDao);
     }
     /**
      * 修改(密码)
      */
     @PostMapping(Url.user.update)
-    public ResultDto updateByUserId  (@RequestBody userDao userDao){
+    public ResultDto updateByUserId  (@RequestBody userDto userDao){
         return logininAndLoginupService.updateByUserId(userDao);
     }
 }

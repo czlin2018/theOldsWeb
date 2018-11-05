@@ -29,6 +29,11 @@ public class dateApi  {
         str=str.substring( str.length()-6,str.length()-1 );
         return  str ;
     }
+    public static String getPicTimeId() {
+        long timesId = System.currentTimeMillis();
+        String str= "Pic"+String.valueOf( timesId);
+        return  str ;
+    }
 
     /**
      * 获取现在时间

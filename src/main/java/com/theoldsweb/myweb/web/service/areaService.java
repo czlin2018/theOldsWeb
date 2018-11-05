@@ -39,6 +39,11 @@ public class areaService {
     public ResultDto insert( areaDto areaDto ){
         areatb areatb=new areatb();
         BeanCopyUtil.copy( areaDto,areatb );
+        //检测数据库时候存在
+        if(checkIfExistts(areaDto))
+        {
+            return   new ResultDto(0, "已经存在相同名字的地区");
+        }
         areatb.setCreateTime( dateApi.currentDateTime() );
         areatb.setUpdateTime( dateApi.currentDateTime() );
         int insert=areatbMapper.insert( areatb );
@@ -47,6 +52,7 @@ public class areaService {
         }else
         return new ResultDto(0, "新增失败");
     }
+
 
     public ResultDto delect( areaDto areaDto){
         areatb areatb=new areatb();
@@ -60,12 +66,31 @@ public class areaService {
     public ResultDto update( areaDto areaDto){
         areatb areatb=new areatb();
         BeanCopyUtil.copy( areaDto,areatb );
+        if(checkIfExistts(areaDto))
+        {
+            return   new ResultDto(0, "已经存在相同名字的地区");
+        }
         areatb.setUpdateTime( dateApi.currentDateTime() );
         int delete=areatbMapper.updateByPrimaryKey( areatb );
         if(delete>0){
             return new ResultDto( 0,"更新成功" );
         }else
             return new ResultDto(0, "更新失败");
+    }
+
+
+    private boolean checkIfExistts( areaDto areaDto ){
+        areatb areatb=new areatb();
+        areatb.setTourAreaName(areaDto.getTourAreaName());
+        areatb areatb1=areatbMapper.selectOne( areatb );
+        if ( areatb1!=null ) {
+            //代表新增
+            if ( areatb1.getTourAreaId()!=null )
+                return true;
+            else
+                return !areatb1.getTourAreaId().equals( areaDto.getTourAreaId() );
+        }else
+            return false;
     }
 }
 

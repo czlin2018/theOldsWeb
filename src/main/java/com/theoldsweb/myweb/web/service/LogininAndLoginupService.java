@@ -3,7 +3,7 @@ package com.theoldsweb.myweb.web.service;
 import com.theoldsweb.myweb.common.api.BeanCopyUtil;
 import com.theoldsweb.myweb.common.api.dateApi;
 import com.theoldsweb.myweb.common.config.ResultDto;
-import com.theoldsweb.myweb.common.dto.userDao;
+import com.theoldsweb.myweb.common.dto.userDto;
 import com.theoldsweb.myweb.common.entity.usertb;
 import com.theoldsweb.myweb.web.mapper.usertbMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,23 +26,36 @@ public class LogininAndLoginupService {
  * 登陆
  */
 
-    public ResultDto login(userDao userDao){
+    public ResultDto login( userDto userDao){
         usertb usertb=new usertb();
         BeanCopyUtil.copy(userDao,usertb);
-        int count=usertbMapper.selectCount(usertb);
-        if(count!=0){
-            return new ResultDto(0, "登录成功");
-        }else {
+        try {
+            usertb usertb1=usertbMapper.selectOne( usertb );
+
+            if(usertb1!=null){
+                return new ResultDto(0, "登陆成功",usertb1);
+            }else {
+                return new ResultDto(0, "登录失败");
+            }
+
+        }catch (Exception e){
             return new ResultDto(0, "登录失败");
         }
+
+
     }
 /**
  * 注册
  */
 
-    public ResultDto logup(userDao userDao){
+    public ResultDto logup( userDto userDao){
+        if(checkIfExistts(userDao))
+        {
+            return   new ResultDto(0, "已经存在相同名字的用户");
+        }
         usertb usertb=new usertb();
         BeanCopyUtil.copy(userDao,usertb);
+
         usertb.setUserId( "c"+dateApi.getTimeId( ) );
         usertb.setCreateTime( dateApi.currentDateTime() );
         usertb.setUpdateTime( dateApi.currentDateTime() );
@@ -57,7 +70,11 @@ public class LogininAndLoginupService {
     /**
      * 修改
      */
-    public ResultDto updateByUserId(userDao userDao){
+    public ResultDto updateByUserId( userDto userDao){
+        if(checkIfExistts(userDao))
+        {
+            return   new ResultDto(0, "已经存在相同名字的用户");
+        }
         usertb usertb=new usertb();
         BeanCopyUtil.copy(userDao,usertb);
         usertb.setUpdateTime( dateApi.currentDateTime() );
@@ -67,6 +84,19 @@ public class LogininAndLoginupService {
         }else {
             return new ResultDto(0, "修改失败");
         }
+    }
 
+    private boolean checkIfExistts( userDto userDto ){
+        usertb usertb=new usertb();
+        usertb.setUserName(userDto.getUserName());
+        usertb usertb1=usertbMapper.selectOne( usertb );
+        if ( usertb1!=null ) {
+            //为空代表新增
+            if ( usertb1.getUserId()!=null )
+                return true;
+            else
+                return !usertb1.getUserId().equals( userDto.getUserId() );
+        }else
+            return false;
     }
 }

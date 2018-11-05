@@ -2,14 +2,17 @@ package com.theoldsweb.myweb.web.controller;
 
 import com.qiniu.common.Constants;
 import com.theoldsweb.myweb.common.api.QiniuUtil;
+import com.theoldsweb.myweb.common.api.dateApi;
 import com.theoldsweb.myweb.common.config.PageDto;
 import com.theoldsweb.myweb.common.config.ResultDto;
+import com.theoldsweb.myweb.common.config.SysExcCode;
 import com.theoldsweb.myweb.common.dto.TourtbDto;
 import com.theoldsweb.myweb.common.url.Url;
 import com.theoldsweb.myweb.web.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import sun.security.krb5.internal.PAData;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,6 +30,8 @@ public class tourController {
 
     @Autowired
     private TourService toutService;
+    @Autowired
+    private QiniuUtil qiniuUtil;
 
     @GetMapping(value=Url.tour.getTourList)
     public ResultDto getTourAll ( PageDto pageDto ){
@@ -48,12 +53,16 @@ public class tourController {
      * @param multipartFile
      * @return
      */
-    @PutMapping("/article/img/qiniu")
-    public String uploadImgQiniu(@RequestParam("editormd-image-file") MultipartFile multipartFile) throws IOException{
+    @PutMapping(value=Url.tour.imgUpload)
+    public ResultDto uploadImgQiniu(@RequestParam("editormd-image-file") MultipartFile multipartFile) throws IOException{
         FileInputStream inputStream = (FileInputStream) multipartFile.getInputStream();
-        //User currentUser = userService.getCurrentUser();
-        String path = QiniuUtil.uploadImg(inputStream, ""+"czl");
-        return path;
+        String picName=dateApi.getPicTimeId( );
+        String path = qiniuUtil.uploadImg(inputStream, picName);
+        ResultDto resultDto=new ResultDto(  );
+        resultDto.setCode( SysExcCode.SysCommonExcCode.SYS_SUCCESS );
+        resultDto.setMsg( "上传成功" );
+        resultDto.setData( path );
+        return resultDto;
     }
 
 }
