@@ -92,7 +92,7 @@ public class LogininAndLoginupService {
         usertb usertb1=usertbMapper.selectOne( usertb );
         if ( usertb1!=null ) {
             //为空代表新增
-            if ( usertb1.getUserId()!=null )
+            if ( userDto.getUserId()==null )
                 return true;
             else
                 return !usertb1.getUserId().equals( userDto.getUserId() );

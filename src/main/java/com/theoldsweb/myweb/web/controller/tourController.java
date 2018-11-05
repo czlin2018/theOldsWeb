@@ -51,9 +51,9 @@ public class tourController {
     /**
      * 上传文件到七牛云存储
      * @param multipartFile
-     * @return
+     * @return ResultDto
      */
-    @PutMapping(value=Url.tour.imgUpload)
+    @PostMapping(value=Url.tour.imgUpload)
     public ResultDto uploadImgQiniu(@RequestParam("editormd-image-file") MultipartFile multipartFile) throws IOException{
         FileInputStream inputStream = (FileInputStream) multipartFile.getInputStream();
         String picName=dateApi.getPicTimeId( );

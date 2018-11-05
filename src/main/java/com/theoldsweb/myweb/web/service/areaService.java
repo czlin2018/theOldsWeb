@@ -85,7 +85,7 @@ public class areaService {
         areatb areatb1=areatbMapper.selectOne( areatb );
         if ( areatb1!=null ) {
             //代表新增
-            if ( areatb1.getTourAreaId()!=null )
+            if ( areaDto.getTourAreaId()==null )
                 return true;
             else
                 return !areatb1.getTourAreaId().equals( areaDto.getTourAreaId() );
