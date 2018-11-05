@@ -3,7 +3,7 @@ package com.theoldsweb.myweb.web.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.theoldsweb.myweb.common.api.BeanCopyUtil;
-import com.theoldsweb.myweb.common.api.dateApi;
+import com.theoldsweb.myweb.common.api.DateApi;
 import com.theoldsweb.myweb.common.config.SysExcCode;
 import com.theoldsweb.myweb.common.config.PageDto;
 import com.theoldsweb.myweb.common.config.ResultDto;
@@ -12,6 +12,7 @@ import com.theoldsweb.myweb.common.entity.areatb;
 import com.theoldsweb.myweb.web.mapper.areatbMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class areaService {
         return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS, pageDto);
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public ResultDto insert( areaDto areaDto ){
         areatb areatb=new areatb();
         BeanCopyUtil.copy( areaDto,areatb );
@@ -44,8 +46,8 @@ public class areaService {
         {
             return   new ResultDto(0, "已经存在相同名字的地区");
         }
-        areatb.setCreateTime( dateApi.currentDateTime() );
-        areatb.setUpdateTime( dateApi.currentDateTime() );
+        areatb.setCreateTime( DateApi.currentDateTime() );
+        areatb.setUpdateTime( DateApi.currentDateTime() );
         int insert=areatbMapper.insert( areatb );
         if(insert>0){
             return new ResultDto( 0,"新增成功" );
@@ -53,7 +55,7 @@ public class areaService {
         return new ResultDto(0, "新增失败");
     }
 
-
+    @Transactional(rollbackFor=Exception.class)
     public ResultDto delect( areaDto areaDto){
         areatb areatb=new areatb();
         BeanCopyUtil.copy( areaDto,areatb );
@@ -63,6 +65,7 @@ public class areaService {
         }else
             return new ResultDto(0, "删除失败");
     }
+    @Transactional(rollbackFor=Exception.class)
     public ResultDto update( areaDto areaDto){
         areatb areatb=new areatb();
         BeanCopyUtil.copy( areaDto,areatb );
@@ -70,7 +73,7 @@ public class areaService {
         {
             return   new ResultDto(0, "已经存在相同名字的地区");
         }
-        areatb.setUpdateTime( dateApi.currentDateTime() );
+        areatb.setUpdateTime( DateApi.currentDateTime() );
         int delete=areatbMapper.updateByPrimaryKey( areatb );
         if(delete>0){
             return new ResultDto( 0,"更新成功" );

@@ -1,3 +1,6 @@
+logging:
+  level:
+    com.theoldsweb.myweb.web.mapper: debug
 #配置编码
 spring:
   http:
@@ -8,28 +11,33 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.106.36.62:3306/theOlds?serverTimezone=Asia/Shanghai&useUnicode=true&useSSL=false&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&rewriteBatchedStatements=true
-#    username: debian-sys-maint
-#    password: onR8ei1BQ6yg7FfE
+#    本地:
+#     username: debian-sys-maint
+#     password: onR8ei1BQ6yg7FfE
     username: root
     password: root
+  redis:
+    host: 47.106.36.62
+    port: 6379
+    password: redis
 #配置端口
 server:
   port: 8080
 
-logging:
-  level:
-    com.theoldsweb.myweb.web.mapper: debug
+
 mybatis:
   mapper-locations: classpath:sqlMap/tourtbMapper.xml,
                     classpath:sqlMap/usertbMapper.xml,
                     classpath:sqlMap/commentstbMapper.xml
   configuration:
     mapUnderscoreToCamelCase: true
+  #七牛云图像存储配置
 qiniu:
   accessKey: TcdYzawyHUr6B7-0J-IHaW4CHgKK_VGWR2A75CdV
   secretKey: ot9p_yHwX7NADp-OZQ5Ekw1qttq6oXp8oETp5u0Y
   bucket: iimage
   path: phk8c13oo.bkt.clouddn.com
+  #短信配置
 DX:
   accessKeyId: LTAIzLYbEWAj5jcZ
   accessKeySecret: cF1HRFRjlxljjcf6ypkHmk4RTn6Gqf

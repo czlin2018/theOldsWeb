@@ -3,7 +3,7 @@ package com.theoldsweb.myweb.web.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.theoldsweb.myweb.common.api.BeanCopyUtil;
-import com.theoldsweb.myweb.common.api.dateApi;
+import com.theoldsweb.myweb.common.api.DateApi;
 import com.theoldsweb.myweb.common.config.SysExcCode;
 import com.theoldsweb.myweb.common.config.PageDto;
 import com.theoldsweb.myweb.common.config.ResultDto;
@@ -16,6 +16,7 @@ import com.theoldsweb.myweb.web.mapper.areatbMapper;
 import com.theoldsweb.myweb.web.mapper.commentstbMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -62,14 +63,14 @@ public class TourService {
 
     }
 
-
+    @Transactional(rollbackFor=Exception.class)
     public ResultDto insert( TourtbDto tourtbDto ){
         tourtb tourtb=new tourtb();
         BeanCopyUtil.copy( tourtbDto,tourtb );
-        tourtb.setTourId( "t"+dateApi.getTimeId( ) );
+        tourtb.setTourId( "t"+ DateApi.getTimeId( ) );
         tourtb.setTourCommentsId( tourtb.getTourId());
-        tourtb.setCreateTime( dateApi.currentDateTime() );
-        tourtb.setUpdateTime( dateApi.currentDateTime() );
+        tourtb.setCreateTime( DateApi.currentDateTime() );
+        tourtb.setUpdateTime( DateApi.currentDateTime() );
         tourtb.setTourGivealike( 0 );
         tourtb.setTourCommentsNum( 0 );
         int insert=tourtbMapper.insert( tourtb );

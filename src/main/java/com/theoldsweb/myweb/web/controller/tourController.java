@@ -1,8 +1,7 @@
 package com.theoldsweb.myweb.web.controller;
 
-import com.qiniu.common.Constants;
 import com.theoldsweb.myweb.common.api.QiniuUtil;
-import com.theoldsweb.myweb.common.api.dateApi;
+import com.theoldsweb.myweb.common.api.DateApi;
 import com.theoldsweb.myweb.common.config.PageDto;
 import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.config.SysExcCode;
@@ -12,7 +11,6 @@ import com.theoldsweb.myweb.web.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import sun.security.krb5.internal.PAData;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -56,7 +54,7 @@ public class tourController {
     @PostMapping(value=Url.tour.imgUpload)
     public ResultDto uploadImgQiniu(@RequestParam("editormd-image-file") MultipartFile multipartFile) throws IOException{
         FileInputStream inputStream = (FileInputStream) multipartFile.getInputStream();
-        String picName=dateApi.getPicTimeId( );
+        String picName=DateApi.getPicTimeId( );
         String path = qiniuUtil.uploadImg(inputStream, picName);
         ResultDto resultDto=new ResultDto(  );
         resultDto.setCode( SysExcCode.SysCommonExcCode.SYS_SUCCESS );

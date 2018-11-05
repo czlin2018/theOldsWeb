@@ -17,10 +17,10 @@ import org.slf4j.LoggerFactory;
  * @Date: 2018 05 02 上午9:19
  * @Desc:
  */
-public class dateApi  {
+public class DateApi {
 
 
-    static Logger log = LoggerFactory.getLogger(dateApi.class);
+    static Logger log = LoggerFactory.getLogger( DateApi.class);
 
 
     public static String getTimeId() {

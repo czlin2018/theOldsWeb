@@ -3,18 +3,16 @@ package com.theoldsweb.myweb.web.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.theoldsweb.myweb.common.api.BeanCopyUtil;
-import com.theoldsweb.myweb.common.api.dateApi;
+import com.theoldsweb.myweb.common.api.DateApi;
 import com.theoldsweb.myweb.common.config.PageDto;
 import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.config.SysExcCode;
-import com.theoldsweb.myweb.common.dto.areaDto;
 import com.theoldsweb.myweb.common.dto.commentsDto;
-import com.theoldsweb.myweb.common.entity.areatb;
 import com.theoldsweb.myweb.common.entity.commentstb;
-import com.theoldsweb.myweb.web.mapper.areatbMapper;
 import com.theoldsweb.myweb.web.mapper.commentstbMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,19 +36,19 @@ public class commentsService {
         pageDto.setPageData(commentstbList);
         return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS, pageDto);
     }
-
+    @Transactional(rollbackFor=Exception.class)
     public ResultDto insert( commentsDto commentsDto ){
         commentstb commentstb=new commentstb();
         BeanCopyUtil.copy( commentsDto,commentstb );
-        commentstb.setCreateTime( dateApi.currentDateTime() );
-        commentstb.setUpdateTime( dateApi.currentDateTime() );
+        commentstb.setCreateTime( DateApi.currentDateTime() );
+        commentstb.setUpdateTime( DateApi.currentDateTime() );
         int insert=commentstbMapper.insert( commentstb );
         if(insert>0){
             return new ResultDto( 0,"新增成功" );
         }else
         return new ResultDto(0, "新增失败");
     }
-
+    @Transactional(rollbackFor=Exception.class)
     public ResultDto delect( commentsDto commentsDto){
         commentstb commentstb=new commentstb();
         BeanCopyUtil.copy( commentsDto,commentstb );
@@ -60,10 +58,11 @@ public class commentsService {
         }else
             return new ResultDto(0, "删除失败");
     }
+    @Transactional(rollbackFor=Exception.class)
     public ResultDto update( commentsDto commentsDto){
         commentstb commentstb=new commentstb();
         BeanCopyUtil.copy( commentsDto,commentstb );
-        commentstb.setUpdateTime( dateApi.currentDateTime() );
+        commentstb.setUpdateTime( DateApi.currentDateTime() );
         int delete=commentstbMapper.updateByPrimaryKey( commentstb );
         if(delete>0){
             return new ResultDto( 0,"更新成功" );
