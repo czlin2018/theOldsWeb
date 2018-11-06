@@ -2,6 +2,7 @@ package com.theoldsweb.myweb.common.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * @创建时间: 下午12:21
  */
 @Data
-public class TourtbDto {
+public class TourtbDto  implements Serializable {
 
     private Integer selectType;
 

@@ -2,6 +2,8 @@ package com.theoldsweb.myweb.common.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @描述:
  * @版权: Copyright (c) 2016-2018
@@ -11,7 +13,7 @@ import lombok.Data;
  * @创建时间: 下午12:21
  */
 @Data
-public class commentsDto {
+public class commentsDto  implements Serializable {
     private Integer id;
 
 

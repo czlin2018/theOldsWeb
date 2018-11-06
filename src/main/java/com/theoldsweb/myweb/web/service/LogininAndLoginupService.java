@@ -26,8 +26,6 @@ public class LogininAndLoginupService {
     @Autowired
     private usertbMapper usertbMapper;
     @Autowired
-    private RedisTemplate<Object,Object> redisTemplate;
-    @Autowired
     private RedisUtil redisUtil;
 /**
  * 登陆

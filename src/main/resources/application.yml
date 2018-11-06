@@ -11,7 +11,7 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.106.36.62:3306/theOlds?serverTimezone=Asia/Shanghai&useUnicode=true&useSSL=false&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&rewriteBatchedStatements=true
-#    本地:
+#     本地mysql:
 #     username: debian-sys-maint
 #     password: onR8ei1BQ6yg7FfE
     username: root
@@ -24,7 +24,7 @@ spring:
 server:
   port: 8080
 
-
+#生成的xml需要在此处注册，（存在bug，实际上使用包.*.xml即可，但是出现了问题）
 mybatis:
   mapper-locations: classpath:sqlMap/tourtbMapper.xml,
                     classpath:sqlMap/usertbMapper.xml,
