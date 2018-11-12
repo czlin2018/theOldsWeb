@@ -1,6 +1,7 @@
 package com.theoldsweb.myweb.common.entity;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -21,7 +22,7 @@ public class usertb implements Serializable {
     private String userPassword;
 
     @Column(name = "user_phone_number")
-    private Integer userPhoneNumber;
+    private BigInteger userPhoneNumber;
 
     @Column(name = "create_time")
     private Date createTime;
@@ -90,14 +91,14 @@ public class usertb implements Serializable {
     /**
      * @return user_phone_number
      */
-    public Integer getUserPhoneNumber() {
+    public BigInteger getUserPhoneNumber() {
         return userPhoneNumber;
     }
 
     /**
      * @param userPhoneNumber
      */
-    public void setUserPhoneNumber(Integer userPhoneNumber) {
+    public void setUserPhoneNumber(BigInteger userPhoneNumber) {
         this.userPhoneNumber = userPhoneNumber;
     }
 

@@ -4,6 +4,7 @@ import com.theoldsweb.myweb.common.api.BeanCopyUtil;
 import com.theoldsweb.myweb.common.api.DateApi;
 import com.theoldsweb.myweb.common.api.RedisUtil;
 import com.theoldsweb.myweb.common.config.ResultDto;
+import com.theoldsweb.myweb.common.config.SysExcCode;
 import com.theoldsweb.myweb.common.dto.userDto;
 import com.theoldsweb.myweb.common.entity.usertb;
 import com.theoldsweb.myweb.web.mapper.usertbMapper;
@@ -35,23 +36,22 @@ public class LogininAndLoginupService {
         //查看缓存
         usertb usertb2=(usertb) redisUtil.find(userDao.getUserName() );
         if ( usertb2 == null ) {
-
             usertb usertb=new usertb( );
             BeanCopyUtil.copy( userDao , usertb );
             try {
                 usertb usertb1=usertbMapper.selectOne( usertb );
-                redisUtil.register(usertb1.getUserName() , usertb1);
                 if ( usertb1 != null ) {
-                    return new ResultDto( 0 , "登陆成功" , usertb1 );
+                    redisUtil.register(usertb1.getUserName() , usertb1);
+                    return new ResultDto(  SysExcCode.SysCommonExcCode.SYS_SUCCESS , "登陆成功" , usertb1 );
                 } else {
-                    return new ResultDto( 0 , "登录失败" );
+                    return new ResultDto( SysExcCode.SysCommonExcCode.SYS_ERROR , "登录失败,账户名或密码错误" );
                 }
 
             } catch (Exception e) {
-                return new ResultDto( 0 , "登录失败" );
+                return new ResultDto(  SysExcCode.SysCommonExcCode.SYS_ERROR, "出现异常,登录失败" );
             }
         }
-         return new ResultDto( 0 , "登陆成功" , usertb2 );
+         return new ResultDto(  SysExcCode.SysCommonExcCode.SYS_SUCCESS , "登陆成功" , usertb2 );
     }
 /**
  * 注册
@@ -60,7 +60,7 @@ public class LogininAndLoginupService {
     public ResultDto logup( userDto userDao){
         if(checkIfExistts(userDao))
         {
-            return   new ResultDto(0, "已经存在相同名字的用户");
+            return   new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "已经存在相同名字的用户");
         }
         usertb usertb=new usertb();
         BeanCopyUtil.copy(userDao,usertb);
@@ -71,9 +71,9 @@ public class LogininAndLoginupService {
         int count=usertbMapper.insert(usertb);
         if(count!=0){
             redisUtil.register(usertb.getUserName() , usertb);
-            return new ResultDto(0, "注册成功");
+            return new ResultDto(SysExcCode.SysCommonExcCode.SYS_SUCCESS, "注册成功");
         }else {
-            return new ResultDto(0, "注册失败");
+            return new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "注册失败");
         }
 
     }
@@ -84,7 +84,7 @@ public class LogininAndLoginupService {
     public ResultDto updateByUserId( userDto userDao){
         if(checkIfExistts(userDao))
         {
-            return   new ResultDto(0, "已经存在相同名字的用户");
+            return   new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "已经存在相同名字的用户");
         }
         usertb usertb=new usertb();
         BeanCopyUtil.copy(userDao,usertb);
@@ -92,9 +92,9 @@ public class LogininAndLoginupService {
         int count=usertbMapper.updateByPrimaryKeySelective(usertb);
         if(count!=0){
             redisUtil.register(usertb.getUserName() , usertb);
-            return new ResultDto(0, "修改成功");
+            return new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "修改成功");
         }else {
-            return new ResultDto(0, "修改失败");
+            return new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "修改失败");
         }
     }
 

@@ -73,9 +73,9 @@ public class TourService {
         tourtb.setTourCommentsNum( 0 );
         int insert=tourtbMapper.insert( tourtb );
         if(insert>0){
-            return new ResultDto( 0,"添加成功" );
+            return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"添加成功" );
         }else
-            return new ResultDto( 0,"失败成功" );
+            return new ResultDto( SysExcCode.SysCommonExcCode.SYS_ERROR,"添加成功" );
 
     }
 

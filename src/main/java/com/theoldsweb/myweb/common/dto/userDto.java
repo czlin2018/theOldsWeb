@@ -2,6 +2,7 @@ package com.theoldsweb.myweb.common.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Data
@@ -18,7 +19,7 @@ public class userDto  implements Serializable {
     private String userPassword;
 
 
-    private Integer userPhoneNumber;
+    private BigInteger userPhoneNumber;
 
     private Date createTime;
 

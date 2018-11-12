@@ -44,15 +44,15 @@ public class areaService {
         //检测数据库时候存在
         if(checkIfExistts(areaDto))
         {
-            return   new ResultDto(0, "已经存在相同名字的地区");
+            return   new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "已经存在相同名字的地区");
         }
         areatb.setCreateTime( DateApi.currentDateTime() );
         areatb.setUpdateTime( DateApi.currentDateTime() );
         int insert=areatbMapper.insert( areatb );
         if(insert>0){
-            return new ResultDto( 0,"新增成功" );
+            return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"新增成功" );
         }else
-        return new ResultDto(0, "新增失败");
+        return new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "新增失败");
     }
 
     @Transactional(rollbackFor=Exception.class)
@@ -61,9 +61,9 @@ public class areaService {
         BeanCopyUtil.copy( areaDto,areatb );
         int delete=areatbMapper.deleteByPrimaryKey( areatb );
         if(delete>0){
-            return new ResultDto( 0,"删除成功" );
+            return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"删除成功" );
         }else
-            return new ResultDto(0, "删除失败");
+            return new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "删除失败");
     }
     @Transactional(rollbackFor=Exception.class)
     public ResultDto update( areaDto areaDto){
@@ -71,14 +71,14 @@ public class areaService {
         BeanCopyUtil.copy( areaDto,areatb );
         if(checkIfExistts(areaDto))
         {
-            return   new ResultDto(0, "已经存在相同名字的地区");
+            return   new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "已经存在相同名字的地区");
         }
         areatb.setUpdateTime( DateApi.currentDateTime() );
         int delete=areatbMapper.updateByPrimaryKey( areatb );
         if(delete>0){
-            return new ResultDto( 0,"更新成功" );
+            return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"更新成功" );
         }else
-            return new ResultDto(0, "更新失败");
+            return new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "更新失败");
     }
 
 

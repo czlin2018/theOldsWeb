@@ -44,9 +44,9 @@ public class commentsService {
         commentstb.setUpdateTime( DateApi.currentDateTime() );
         int insert=commentstbMapper.insert( commentstb );
         if(insert>0){
-            return new ResultDto( 0,"新增成功" );
+            return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"新增成功" );
         }else
-        return new ResultDto(0, "新增失败");
+        return new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "新增失败");
     }
     @Transactional(rollbackFor=Exception.class)
     public ResultDto delect( commentsDto commentsDto){
@@ -54,9 +54,9 @@ public class commentsService {
         BeanCopyUtil.copy( commentsDto,commentstb );
         int delete=commentstbMapper.deleteByPrimaryKey( commentstb );
         if(delete>0){
-            return new ResultDto( 0,"删除成功" );
+            return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"删除成功" );
         }else
-            return new ResultDto(0, "删除失败");
+            return new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "删除失败");
     }
     @Transactional(rollbackFor=Exception.class)
     public ResultDto update( commentsDto commentsDto){
@@ -65,9 +65,9 @@ public class commentsService {
         commentstb.setUpdateTime( DateApi.currentDateTime() );
         int delete=commentstbMapper.updateByPrimaryKey( commentstb );
         if(delete>0){
-            return new ResultDto( 0,"更新成功" );
+            return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"更新成功" );
         }else
-            return new ResultDto(0, "更新失败");
+            return new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "更新失败");
     }
 
 
