@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.theoldsweb.myweb.web.mapper.commentstbMapper">
+  <resultMap id="BaseResultMap" type="com.theoldsweb.myweb.common.entity.commentstb">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="tour_comments_id" jdbcType="INTEGER" property="tourCommentsId" />
+    <result column="tour_comments" jdbcType="LONGVARCHAR" property="tourComments" />
+  </resultMap>
+  <select id="selectByComments" resultType="com.theoldsweb.myweb.common.dto.commentsDto">
+    SELECT
+          id,
+          tour_comments_id as tourcommentsId,
+          tour_comments as tourComments
+    FROM `comments_tb`
+    where tour_comments_id=#{tour_comments_id}
+
+  </select>
+</mapper>

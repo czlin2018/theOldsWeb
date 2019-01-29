@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.theoldsweb.myweb.web.mapper.tourtbMapper">
+
+    <select id="getList" resultType="com.theoldsweb.myweb.common.dto.TourtbDto">
+         SELECT
+          id,
+          tour_id as tourId,
+          tour_title as tourTitle,
+          tour_digest as tourDigest,
+          tour_main_body as tourMainBody,
+          tour_pic as tourPic,
+          tour_comments_id as tourCommentsId,
+          tour_country_id as tourCountryId,
+          tour_area_id  as tourAreaId,
+          tour_giveALike as tourGiveALike,
+          create_time as createTime,
+          update_time as updateTime
+        FROM tour_tb
+    </select>
+    <select id="selectByOne"
+            parameterType="com.theoldsweb.myweb.common.dto.TourtbDto"
+            resultType="com.theoldsweb.myweb.common.dto.TourtbDto">
+         SELECT
+          id,
+          tour_id as tourId,
+          tour_title as tourTitle,
+          tour_digest as tourDigest,
+          tour_main_body as tourMainBody,
+          tour_pic as tourPic,
+          tour_comments_id as tourCommentsId,
+          tour_country_id as tourCountryId,
+          tour_comments_num as tourCommentsNum,
+          tour_area_id  as tourAreaId,
+          tour_giveALike as tourGiveALike,
+          create_time as createTime,
+          update_time as updateTime
+        FROM tour_tb
+        <choose>
+            <when test="selectType==1">
+                where tour_country_id=1
+            </when>
+            <when test="selectType==2">
+                where tour_country_id=2
+            </when>
+            <when test="selectType==3">
+                order by tour_giveALike desc
+            </when>
+            <when test="selectType==4">
+                order by tour_comments_num desc
+            </when>
+            <when test="selectType==5">
+                order by create_time desc
+            </when>
+        </choose>
+    </select>
+
+</mapper>

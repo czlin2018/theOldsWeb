@@ -71,6 +71,7 @@ public class TourService {
         tourtb.setUpdateTime( DateApi.currentDateTime() );
         tourtb.setTourGivealike( 0 );
         tourtb.setTourCommentsNum( 0 );
+        System.out.println("");
         int insert=tourtbMapper.insert( tourtb );
         if(insert>0){
             return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"添加成功" );
