@@ -1,16 +1,13 @@
 
 package com.theoldsweb.myweb.common.api;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.YearMonth;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Calendar;
-import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @Author: czl
@@ -26,7 +23,7 @@ public class DateApi {
     public static String getTimeId() {
         long timesId = System.currentTimeMillis();
         String str= String.valueOf( timesId);
-        str=str.substring( str.length()-6,str.length()-1 );
+        str = str.substring ( str.length ( ) - 6 , str.length ( ) - 1 );
         return  str ;
     }
     public static String getPicTimeId() {

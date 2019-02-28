@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.theoldsweb.myweb.web.mapper.tourtbMapper">
+<mapper namespace="com.theoldsweb.myweb.web.mapper.TourtbMapper">
 
     <select id="getList" resultType="com.theoldsweb.myweb.common.dto.TourtbDto">
          SELECT
-          id,
           tour_id as tourId,
           tour_title as tourTitle,
           tour_digest as tourDigest,
           tour_main_body as tourMainBody,
           tour_pic as tourPic,
-          tour_comments_id as tourCommentsId,
-          tour_country_id as tourCountryId,
-          tour_area_id  as tourAreaId,
+          comments_id as commentsId,
+          tour_tb.tour_area_id as tourAreaId,
+          area_tb.tour_area_name as tourAreaName,
+          area_tb.tour_country_id as tourCountryId,
           tour_giveALike as tourGiveALike,
-          create_time as createTime,
-          update_time as updateTime
+          tour_tb.create_time as createTime,
+          tour_tb.update_time as updateTime
         FROM tour_tb
+        left join     area_tb
+        on tour_tb.tour_area_id=area_tb.tour_area_id
     </select>
     <select id="selectByOne"
             parameterType="com.theoldsweb.myweb.common.dto.TourtbDto"
@@ -28,8 +30,8 @@
           tour_digest as tourDigest,
           tour_main_body as tourMainBody,
           tour_pic as tourPic,
-          tour_comments_id as tourCommentsId,
-          tour_country_id as tourCountryId,
+        comments_id as commentsId,
+        country_id as countryId,
           tour_comments_num as tourCommentsNum,
           tour_area_id  as tourAreaId,
           tour_giveALike as tourGiveALike,
@@ -54,5 +56,13 @@
             </when>
         </choose>
     </select>
+    <update id="updateCommentsByTourId">
+      UPDATE `tour_tb`
+        SET
+        `comments_id` =CONCAT(comments_id,',',#{commentsId}),
+        `update_time` = #{ date }
+        WHERE
+            `tour_id` = #{tourId};
+    </update>
 
 </mapper>

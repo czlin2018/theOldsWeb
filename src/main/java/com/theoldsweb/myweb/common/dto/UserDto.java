@@ -1,15 +1,14 @@
 package com.theoldsweb.myweb.common.dto;
+
 import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Date;
 
 @Data
-public class userDto  implements Serializable {
+public class UserDto implements Serializable {
 
     private Integer id;
-
 
     private String userId;
 
@@ -21,9 +20,9 @@ public class userDto  implements Serializable {
 
     private BigInteger userPhoneNumber;
 
-    private Date createTime;
+    private String createTime;
 
 
-    private Date updateTime;
+    private String updateTime;
 
 }

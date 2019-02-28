@@ -3,7 +3,6 @@ package com.theoldsweb.myweb.common.dto;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,16 +18,11 @@ public class TourtbDto  implements Serializable {
 
     private Integer selectType;
 
-    private Integer id;
-
-
     private String tourId;
 
     private String tourTitle;
 
-
     private String tourDigest;
-
 
     private String tourMainBody;
 
@@ -37,11 +31,17 @@ public class TourtbDto  implements Serializable {
     /**
      * 关联评论表,用评论表,评论id
      */
-    private String tourCommentsId;
+    private String CommentsId;
 
-    private Integer tourCommentsNum;
+    /**
+     * 评价数量
+     */
+    private Integer commentsNum;
 
-    private List tourComments;
+    /**
+     * 评价内容
+     */
+    private List comments;
 
     /**
      * 国内 国外
@@ -50,19 +50,13 @@ public class TourtbDto  implements Serializable {
 
     private String tourCountryName;
 
-
-
-
     private Integer tourAreaId;
-
 
     private String tourAreaName;
 
     private Integer tourGivealike;
 
-
     private String  createTime;
-
 
     private String  updateTime;
 }

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
 @Repository
-public interface usertbMapper extends Mapper<usertb> {
+public interface UsertbMapper extends Mapper<usertb> {
 }

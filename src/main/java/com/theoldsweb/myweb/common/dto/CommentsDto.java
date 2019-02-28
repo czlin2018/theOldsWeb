@@ -13,18 +13,16 @@ import java.io.Serializable;
  * @创建时间: 下午12:21
  */
 @Data
-public class commentsDto  implements Serializable {
+public class CommentsDto implements Serializable {
+
     private Integer id;
 
+    private String commentsId;
 
-    private Integer tourCommentsId;
+    private String comments;
 
+    private String createTime;
 
-    private String tourComments;
-
-    private String  createTime;
-
-
-    private String  updateTime;
+    private String updateTime;
 
 }

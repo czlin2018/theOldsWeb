@@ -1,7 +1,7 @@
 package com.theoldsweb.myweb.web.controller;
 
 import com.theoldsweb.myweb.common.config.ResultDto;
-import com.theoldsweb.myweb.common.dto.userDto;
+import com.theoldsweb.myweb.common.dto.UserDto;
 import com.theoldsweb.myweb.common.url.Url;
 import com.theoldsweb.myweb.web.service.LogininAndLoginupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @描述:
+ * @描述: 简易登录
  * @版权: Copyright (c) 2016-2018
  * @公司: lumi
  * @作者: 泽林
@@ -18,15 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @创建时间: 下午4:14
  */
 @RestController
-public class LogininAndLoginupController {
+public class LoginInAndiLoginUpController {
 
     @Autowired
     private LogininAndLoginupService logininAndLoginupService;
+
     /**
      * 登陆
      */
     @PostMapping(Url.user.login)
-    public ResultDto loginIn  (@RequestBody userDto userDao){
+    public ResultDto loginIn( @RequestBody UserDto userDao ){
         return logininAndLoginupService.login(userDao);
     }
     /**
@@ -34,14 +35,14 @@ public class LogininAndLoginupController {
      */
 
     @PostMapping(Url.user.logUp)
-        public ResultDto loginUp  (@RequestBody userDto userDao){
+    public ResultDto loginUp( @RequestBody UserDto userDao ){
         return logininAndLoginupService.logup(userDao);
     }
     /**
      * 修改(密码)
      */
     @PostMapping(Url.user.update)
-    public ResultDto updateByUserId  (@RequestBody userDto userDao){
+    public ResultDto updateByUserId( @RequestBody UserDto userDao ){
         return logininAndLoginupService.updateByUserId(userDao);
     }
 }

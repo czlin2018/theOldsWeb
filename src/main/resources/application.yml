@@ -3,6 +3,7 @@ logging:
     com.theoldsweb.myweb.web.mapper: debug
 #配置编码
 spring:
+  profiles: dev
   http:
     encoding:
       charset: utf-8

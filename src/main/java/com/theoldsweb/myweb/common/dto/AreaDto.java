@@ -13,21 +13,18 @@ import java.io.Serializable;
  * @创建时间: 下午12:19
  */
 @Data
-public class areaDto  implements Serializable {
+public class AreaDto implements Serializable {
+
     private Integer id;
 
-
-    private Integer tourAreaId;
-
+    private String tourAreaId;
 
     private String tourAreaName;
 
-    private Integer tourCountryId;
-
+    private String tourCountryId;
 
     private String  createTime;
 
-
-    private String  updateTime;
+    private String updateTime;
 
 }

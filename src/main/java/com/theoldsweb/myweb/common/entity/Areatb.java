@@ -7,23 +7,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-
 @Data
-@Table(name = "comments_tb")
-public class commentstb implements Serializable {
+@Table(name = "area_tb")
+public class Areatb implements Serializable {
     private Integer id;
 
     @Id
-    @Column(name = "comments_id")
-    private String commentsId;
+    @Column(name = "tour_area_id")
+    private String tourAreaId;
 
-    @Column(name = "comments")
-    private String comments;
+    @Column(name = "tour_area_name")
+    private String tourAreaName;
+
+
+    @Column(name = "tour_country_id")
+    private String tourCountryId;
 
     @Column(name = "create_time")
     private Date createTime;
 
     @Column(name = "update_time")
     private Date updateTime;
+
 
 }
