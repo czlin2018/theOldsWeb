@@ -22,6 +22,7 @@ public class NewsService {
         System.out.println ( time.toString ( ) );
         System.out.println ( time.getTime ( ) );
         System.out.println ( time );
+        System.out.println ( time );
     }
 
 }
