@@ -49,7 +49,7 @@
                 order by tour_giveALike desc
             </when>
             <when test="selectType==4">
-                order by tour_comments_num desc
+                order by LENGTH(tour_comments_num) desc
             </when>
             <when test="selectType==5">
                 order by create_time desc

@@ -11,9 +11,9 @@ import com.theoldsweb.myweb.common.dto.CommentsDto;
 import com.theoldsweb.myweb.common.dto.TourtbDto;
 import com.theoldsweb.myweb.common.entity.Commentstb;
 import com.theoldsweb.myweb.common.entity.Tourtb;
+import com.theoldsweb.myweb.web.mapper.AreatbMapper;
 import com.theoldsweb.myweb.web.mapper.CommentstbMapper;
 import com.theoldsweb.myweb.web.mapper.TourtbMapper;
-import com.theoldsweb.myweb.web.mapper.AreatbMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,8 +46,8 @@ public class TourService {
      * @param pageDto
      * @return
      */
-    public ResultDto getTourAll( PageDto pageDto ){
-        List <TourtbDto>tourDtoList=tourtbMapper.getList();
+    public ResultDto getTourAll (PageDto pageDto, TourtbDto tourtbDto1){
+        List< TourtbDto > tourDtoList = tourtbMapper.selectByOne(tourtbDto1);
         for ( TourtbDto tourtbDto : tourDtoList ) {
 
             //查询评价

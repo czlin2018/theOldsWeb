@@ -17,4 +17,35 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+  <select id="getList" resultType="com.theoldsweb.myweb.common.dto.NewsDto">
+    select
+    *
+    from
+    news
+    <choose>
+      <when test="selectType==1">
+        where new_type=#{newsDto.newType}
+      </when>
+      <when test="selectType==2">
+        order by new_giveALike desc
+      </when>
+      <when test="selectType==3">
+        order by LENGTH(comments_id) desc
+      </when>
+      <when test="selectType==4">
+        order by create_time desc
+      </when>
+    </choose>
+    ;
+  </select>
+  <update id="updateCommentsByNewId">
+       UPDATE `news`
+        SET
+        `comments_id` =CONCAT(comments_id,',',#{commentsId}),
+        `update_time` = #{ date }
+        WHERE
+            `new_id` = #{newsId};
+  </update>
+
 </mapper>

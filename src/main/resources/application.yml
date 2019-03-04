@@ -30,7 +30,17 @@ mybatis:
   mapper-locations:  classpath:sqlMap/TourtbMapper.xml,
                     classpath:sqlMap/UsertbMapper.xml,
                     classpath:sqlMap/CommentstbMapper.xml,
-                    classpath:sqlMap/TourConfigMapper.xml
+                    classpath:sqlMap/TourConfigMapper.xml,
+                    classpath:sqlMap/ActivityConfigMapper.xml,
+                    classpath:sqlMap/ActivityMapper.xml,
+                    classpath:sqlMap/AllTypeConfigMapper.xml,
+                    classpath:sqlMap/LoveConfigMapper.xml,
+                    classpath:sqlMap/LoveMapper.xml,
+                    classpath:sqlMap/NewsConfigMapper.xml,
+                    classpath:sqlMap/NewsMapper.xml,
+                    classpath:sqlMap/VideoConfigMapper.xml,
+                    classpath:sqlMap/VideoMapper.xml
+
   configuration:
     mapUnderscoreToCamelCase: true
 #七牛云图像存储配置

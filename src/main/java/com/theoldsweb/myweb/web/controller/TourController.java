@@ -22,7 +22,7 @@ import java.util.Map;
  * @创建时间: 下午12:27r
  */
 @RestController
-public class tourController{
+public class TourController{
 
     @Autowired
     private TourService toutService;
@@ -31,8 +31,8 @@ public class tourController{
      * 旅游列表
      */
     @GetMapping(value=Url.tour.getTourList)
-    public ResultDto getTourAll ( PageDto pageDto ){
-        return toutService.getTourAll(pageDto);
+    public ResultDto getTourAll (PageDto pageDto, TourtbDto tourtbDto){
+        return toutService.getTourAll(pageDto, tourtbDto);
     }
 
     /**
