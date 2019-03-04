@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.theoldsweb.myweb.web.mapper.LoveMapper">
+  <resultMap id="BaseResultMap" type="com.theoldsweb.myweb.common.entity.Love">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="love_id" jdbcType="INTEGER" property="loveId" />
+    <result column="love_title" jdbcType="VARCHAR" property="loveTitle" />
+    <result column="love_content" jdbcType="VARCHAR" property="loveContent" />
+    <result column="love_time" jdbcType="DATE" property="loveTime" />
+    <result column="love_address" jdbcType="VARCHAR" property="loveAddress" />
+    <result column="love_ower" jdbcType="VARCHAR" property="loveOwer" />
+    <result column="love_condition" jdbcType="VARCHAR" property="loveCondition" />
+    <result column="love_phone" jdbcType="INTEGER" property="lovePhone" />
+    <result column="love_number_of_people" jdbcType="INTEGER" property="loveNumberOfPeople" />
+    <result column="love_has_people" jdbcType="VARCHAR" property="loveHasPeople" />
+    <result column="lovestatus" jdbcType="INTEGER" property="lovestatus" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+</mapper>

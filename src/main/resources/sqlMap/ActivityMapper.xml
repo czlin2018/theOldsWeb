@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.theoldsweb.myweb.web.mapper.ActivityMapper">
+  <resultMap id="BaseResultMap" type="com.theoldsweb.myweb.common.entity.Activity">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="activity_title" jdbcType="VARCHAR" property="activityTitle" />
+    <result column="activity_content" jdbcType="VARCHAR" property="activityContent" />
+    <result column="activity_time" jdbcType="DATE" property="activityTime" />
+    <result column="activity_address" jdbcType="VARCHAR" property="activityAddress" />
+    <result column="activity_ower" jdbcType="VARCHAR" property="activityOwer" />
+    <result column="activity_condition" jdbcType="VARCHAR" property="activityCondition" />
+    <result column="activity_phone" jdbcType="INTEGER" property="activityPhone" />
+    <result column="activity_number_of_people" jdbcType="INTEGER" property="activityNumberOfPeople" />
+    <result column="activity_has_people" jdbcType="VARCHAR" property="activityHasPeople" />
+    <result column="activity_status" jdbcType="INTEGER" property="activityStatus" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+</mapper>

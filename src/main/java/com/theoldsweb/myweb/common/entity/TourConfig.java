@@ -8,8 +8,8 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 @Data
-@Table(name = "area_tb")
-public class Areatb implements Serializable {
+@Table(name = "tour_config")
+public class TourConfig implements Serializable {
     private Integer id;
 
     @Id

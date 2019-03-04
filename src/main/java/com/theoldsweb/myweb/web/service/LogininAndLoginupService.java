@@ -6,7 +6,7 @@ import com.theoldsweb.myweb.common.api.RedisUtil;
 import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.config.SysExcCode;
 import com.theoldsweb.myweb.common.dto.UserDto;
-import com.theoldsweb.myweb.common.entity.usertb;
+import com.theoldsweb.myweb.common.entity.Usertb;
 import com.theoldsweb.myweb.web.mapper.UsertbMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Service
-public class LogininAndLoginupService {
+public class LogininAndLoginupService{
     @Autowired
     private UsertbMapper usertbMapper;
     @Autowired
@@ -35,9 +35,9 @@ public class LogininAndLoginupService {
      * @return
      */
     public ResultDto login( UserDto userDao ){
-        usertb usertb = new usertb ( );
+        Usertb usertb = new Usertb( );
         BeanCopyUtil.copy ( userDao , usertb );
-        usertb usertb1 = usertbMapper.selectOne ( usertb );
+        Usertb usertb1 = usertbMapper.selectOne ( usertb );
                 if ( usertb1 != null ) {
                     usertb1.setUserPassword ( "*******" );
                     return new ResultDto(  SysExcCode.SysCommonExcCode.SYS_SUCCESS , "登陆成功" , usertb1 );
@@ -59,7 +59,7 @@ public class LogininAndLoginupService {
         {
             return   new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "已经存在相同名字的用户");
         }
-        usertb usertb=new usertb();
+        Usertb usertb=new Usertb();
         BeanCopyUtil.copy(userDao,usertb);
 
         usertb.setUserId( "c"+ DateApi.getTimeId( ) );
@@ -84,7 +84,7 @@ public class LogininAndLoginupService {
         if ( checkIfExistts ( userDao ) ) {
             return   new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "已经存在相同名字的用户");
         }
-        usertb usertb=new usertb();
+        Usertb usertb=new Usertb();
         BeanCopyUtil.copy(userDao,usertb);
         usertb.setUpdateTime( DateApi.currentDateTime() );
         int count=usertbMapper.updateByPrimaryKeySelective(usertb);
@@ -102,16 +102,18 @@ public class LogininAndLoginupService {
      * @return
      */
     private boolean checkIfExistts( UserDto userDto ){
-        usertb usertb=new usertb();
+        Usertb usertb=new Usertb();
         usertb.setUserName(userDto.getUserName());
-        usertb usertb1=usertbMapper.selectOne( usertb );
+        Usertb usertb1=usertbMapper.selectOne( usertb );
         if ( usertb1!=null ) {
             //为空代表新增
-            if ( userDto.getUserId()==null )
+            if ( userDto.getUserId()==null ){
                 return true;
-            else
+            }else{
                 return !usertb1.getUserId().equals( userDto.getUserId() );
-        }else
+            }
+        }else{
             return false;
+        }
     }
 }

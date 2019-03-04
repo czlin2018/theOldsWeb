@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 @Table(name = "tour_tb")
-public class tourtb implements Serializable {
+public class Tourtb implements Serializable {
     private Integer id;
 
     @Id

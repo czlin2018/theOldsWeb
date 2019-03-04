@@ -7,8 +7,8 @@ import com.theoldsweb.myweb.common.api.DateApi;
 import com.theoldsweb.myweb.common.config.PageDto;
 import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.config.SysExcCode;
-import com.theoldsweb.myweb.common.dto.AreaDto;
-import com.theoldsweb.myweb.common.entity.Areatb;
+import com.theoldsweb.myweb.common.dto.TourConfigDto;
+import com.theoldsweb.myweb.common.entity.TourConfig;
 import com.theoldsweb.myweb.web.mapper.AreatbMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,39 +37,39 @@ public class AreaService{
      */
     public ResultDto getList( PageDto pageDto ){
         Page<Object> objectPage = PageHelper.startPage(pageDto.getPageNo(), pageDto.getPageSize());
-        List<Areatb> areatbs = areatbMapper.selectAll ( );
-        for ( Areatb areatb : areatbs ) {
-            areatb.getTourCountryId ( );
-            if ( "1".equals ( areatb.getTourCountryId ( ) ) ) {
-                areatb.setTourCountryId ( "国内" );
+        List< TourConfig > tourConfigs = areatbMapper.selectAll ( );
+        for ( TourConfig tourConfig : tourConfigs) {
+            tourConfig.getTourCountryId ( );
+            if ( "1".equals ( tourConfig.getTourCountryId ( ) ) ) {
+                tourConfig.setTourCountryId ( "国内" );
             } else {
-                areatb.setTourCountryId ( "国外" );
+                tourConfig.setTourCountryId ( "国外" );
             }
         }
         pageDto.setTotalCount(objectPage.getTotal());
-        pageDto.setPageData(areatbs);
+        pageDto.setPageData(tourConfigs);
         return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS, pageDto);
     }
 
     /**
      * 插入
      *
-     * @param areaDto
+     * @param tourConfigDto
      * @return
      */
     @Transactional(rollbackFor=Exception.class)
-    public ResultDto insert( AreaDto areaDto ){
-        Areatb areatb = new Areatb ( );
-        BeanCopyUtil.copy( areaDto,areatb );
-        areatb.setCreateTime ( DateApi.currentDateTime ( ) );
+    public ResultDto insert( TourConfigDto tourConfigDto){
+        TourConfig tourConfig = new TourConfig( );
+        BeanCopyUtil.copy(tourConfigDto, tourConfig);
+        tourConfig.setCreateTime ( DateApi.currentDateTime ( ) );
         //检测数据库是否存在
-        if ( checkIfExistts ( areaDto ) ) {
+        if ( checkIfExistts (tourConfigDto) ) {
             return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "已经存在相同名字的地区" );
         }
-        areatb.setCreateTime( DateApi.currentDateTime() );
-        areatb.setUpdateTime( DateApi.currentDateTime() );
-        areatb.setTourAreaId ( DateApi.getTimeId ( ) );
-        int insert=areatbMapper.insert( areatb );
+        tourConfig.setCreateTime( DateApi.currentDateTime() );
+        tourConfig.setUpdateTime( DateApi.currentDateTime() );
+        tourConfig.setTourAreaId ( DateApi.getTimeId ( ) );
+        int insert=areatbMapper.insert(tourConfig);
         if(insert>0){
             return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"新增成功" );
         } else
@@ -84,9 +84,9 @@ public class AreaService{
      */
     @Transactional(rollbackFor=Exception.class)
     public ResultDto delect( String tourAreaId ){
-        Areatb areatb = new Areatb ( );
-        areatb.setTourAreaId ( tourAreaId );
-        int delete=areatbMapper.deleteByPrimaryKey( areatb );
+        TourConfig tourConfig = new TourConfig( );
+        tourConfig.setTourAreaId ( tourAreaId );
+        int delete=areatbMapper.deleteByPrimaryKey(tourConfig);
         if(delete>0){
             return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"删除成功" );
         }else
@@ -96,18 +96,18 @@ public class AreaService{
     /**
      * 更新
      *
-     * @param areaDto
+     * @param tourConfigDto
      * @return
      */
     @Transactional(rollbackFor=Exception.class)
-    public ResultDto update( AreaDto areaDto ){
-        Areatb areatb = new Areatb ( );
-        BeanCopyUtil.copy( areaDto,areatb );
-        if ( checkIfExistts ( areaDto ) ) {
+    public ResultDto update( TourConfigDto tourConfigDto){
+        TourConfig tourConfig = new TourConfig( );
+        BeanCopyUtil.copy(tourConfigDto, tourConfig);
+        if ( checkIfExistts (tourConfigDto) ) {
             return   new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "已经存在相同名字的地区");
         }
-        areatb.setUpdateTime ( DateApi.currentDateTime ( ) );
-        int delete = areatbMapper.updateByPrimaryKeySelective ( areatb );
+        tourConfig.setUpdateTime ( DateApi.currentDateTime ( ) );
+        int delete = areatbMapper.updateByPrimaryKeySelective (tourConfig);
         if(delete>0){
             return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"更新成功" );
         }else
@@ -117,19 +117,19 @@ public class AreaService{
     /**
      * 检查数据库是否存在该数据
      *
-     * @param areaDto
+     * @param tourConfigDto
      * @return
      */
-    private boolean checkIfExistts( AreaDto areaDto ){
-        Areatb areatb = new Areatb ( );
-        areatb.setTourAreaName(areaDto.getTourAreaName());
-        Areatb areatb1 = areatbMapper.selectOne ( areatb );
-        if ( areatb1!=null ) {
+    private boolean checkIfExistts( TourConfigDto tourConfigDto){
+        TourConfig tourConfig = new TourConfig( );
+        tourConfig.setTourAreaName(tourConfigDto.getTourAreaName());
+        TourConfig tourConfig1 = areatbMapper.selectOne (tourConfig);
+        if ( tourConfig1 !=null ) {
             //代表新增
-            if ( areaDto.getTourAreaId()==null )
+            if ( tourConfigDto.getTourAreaId()==null )
                 return true;
             else
-                return !areatb1.getTourAreaId().equals( areaDto.getTourAreaId() );
+                return ! tourConfig1.getTourAreaId().equals( tourConfigDto.getTourAreaId() );
         }else
             return false;
     }

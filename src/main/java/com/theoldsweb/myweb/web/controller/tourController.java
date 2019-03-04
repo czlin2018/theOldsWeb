@@ -22,7 +22,7 @@ import java.util.Map;
  * @创建时间: 下午12:27r
  */
 @RestController
-public class TourController {
+public class tourController{
 
     @Autowired
     private TourService toutService;

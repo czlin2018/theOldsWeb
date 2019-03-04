@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.theoldsweb.myweb.web.mapper.NewsMapper">
+  <resultMap id="BaseResultMap" type="com.theoldsweb.myweb.common.entity.News">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="new_id" jdbcType="VARCHAR" property="newId" />
+    <result column="new_title" jdbcType="VARCHAR" property="newTitle" />
+    <result column="new_digest" jdbcType="VARCHAR" property="newDigest" />
+    <result column="new_main_body" jdbcType="VARCHAR" property="newMainBody" />
+    <result column="new_pic" jdbcType="VARCHAR" property="newPic" />
+    <result column="comments_id" jdbcType="VARCHAR" property="commentsId" />
+    <result column="new_type" jdbcType="INTEGER" property="newType" />
+    <result column="new_giveALike" jdbcType="INTEGER" property="newGivealike" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+</mapper>

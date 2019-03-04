@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @创建时间: 下午4:14
  */
 @RestController
-public class LoginInAndiLoginUpController {
+public class logininAndLoginupController{
 
     @Autowired
     private LogininAndLoginupService logininAndLoginupService;

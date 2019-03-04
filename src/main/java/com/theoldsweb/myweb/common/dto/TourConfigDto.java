@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @创建时间: 下午12:19
  */
 @Data
-public class AreaDto implements Serializable {
+public class TourConfigDto implements Serializable {
 
     private Integer id;
 

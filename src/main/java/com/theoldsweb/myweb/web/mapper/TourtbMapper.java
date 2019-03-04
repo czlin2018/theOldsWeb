@@ -1,7 +1,7 @@
 package com.theoldsweb.myweb.web.mapper;
 
 import com.theoldsweb.myweb.common.dto.TourtbDto;
-import com.theoldsweb.myweb.common.entity.tourtb;
+import com.theoldsweb.myweb.common.entity.Tourtb;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface TourtbMapper extends Mapper<tourtb> {
+public interface TourtbMapper extends Mapper< Tourtb > {
 
     List<TourtbDto> getList( );
 

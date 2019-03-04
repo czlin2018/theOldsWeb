@@ -9,11 +9,11 @@ import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.config.SysExcCode;
 import com.theoldsweb.myweb.common.dto.CommentsDto;
 import com.theoldsweb.myweb.common.dto.TourtbDto;
-import com.theoldsweb.myweb.common.entity.commentstb;
-import com.theoldsweb.myweb.common.entity.tourtb;
-import com.theoldsweb.myweb.web.mapper.AreatbMapper;
+import com.theoldsweb.myweb.common.entity.Commentstb;
+import com.theoldsweb.myweb.common.entity.Tourtb;
 import com.theoldsweb.myweb.web.mapper.CommentstbMapper;
 import com.theoldsweb.myweb.web.mapper.TourtbMapper;
+import com.theoldsweb.myweb.web.mapper.AreatbMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,7 +66,9 @@ public class TourService {
             //对上国内国外
             if ( (tourtbDto.getTourCountryId ( ) == 1) ) {
                 tourtbDto.setTourCountryName ( "国内" );
-            } else tourtbDto.setTourCountryName ( "国外" );
+            } else{
+                tourtbDto.setTourCountryName ( "国外" );
+            }
 
         }
         Page<Object> objectPage = PageHelper.startPage(pageDto.getPageNo(), pageDto.getPageSize());
@@ -84,7 +86,7 @@ public class TourService {
      */
     @Transactional(rollbackFor=Exception.class)
     public ResultDto insert( TourtbDto tourtbDto ){
-        tourtb tourtb=new tourtb();
+        Tourtb tourtb=new Tourtb();
         BeanCopyUtil.copy( tourtbDto,tourtb );
         tourtb.setTourId( "t"+ DateApi.getTimeId( ) );
         tourtb.setCreateTime( DateApi.currentDateTime() );
@@ -93,8 +95,9 @@ public class TourService {
         int insert=tourtbMapper.insert( tourtb );
         if(insert>0){
             return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"添加成功" );
-        }else
+        }else{
             return new ResultDto( SysExcCode.SysCommonExcCode.SYS_ERROR,"添加成功" );
+        }
 
     }
 
@@ -111,7 +114,7 @@ public class TourService {
         String comments = praamMap.get ( "comments" );
 
         //先入评论表
-        commentstb commentstb = new commentstb ( );
+        Commentstb commentstb = new Commentstb( );
         commentstb.setCommentsId ( commentsId );
         commentstb.setComments ( comments );
         commentstb.setCreateTime ( DateApi.currentDateTime ( ) );
@@ -121,8 +124,9 @@ public class TourService {
         if ( insertSelective >= 0 ) {
             //追加在旅游表评论字段
             tourtbMapper.updateCommentsByTourId ( tourId , commentsId , DateApi.currentDateTime ( ) );
-        } else
+        } else{
             return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "评论失败" );
+        }
         return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_SUCCESS , "评论成功" );
 
 

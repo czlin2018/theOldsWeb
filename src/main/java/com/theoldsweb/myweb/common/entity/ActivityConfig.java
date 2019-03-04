@@ -1,28 +1,18 @@
 package com.theoldsweb.myweb.common.entity;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "user_tb")
-public class usertb implements Serializable {
+@Table(name = "activity_config")
+public class ActivityConfig implements Serializable {
     private Integer id;
-    /**
-     * @Id设置为主键
-     */
-    @Id
-    @Column(name = "user_id")
-    private String userId;
 
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "activity_type_id")
+    private String activityTypeId;
 
-    @Column(name = "user_password")
-    private String userPassword;
-
-    @Column(name = "user_phone_number")
-    private BigInteger userPhoneNumber;
+    @Column(name = "activity_type_name")
+    private String activityTypeName;
 
     @Column(name = "create_time")
     private Date createTime;
@@ -47,59 +37,31 @@ public class usertb implements Serializable {
     }
 
     /**
-     * @return user_id
+     * @return activity_type_id
      */
-    public String getUserId() {
-        return userId;
+    public String getActivityTypeId() {
+        return activityTypeId;
     }
 
     /**
-     * @param userId
+     * @param activityTypeId
      */
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setActivityTypeId(String activityTypeId) {
+        this.activityTypeId = activityTypeId;
     }
 
     /**
-     * @return user_name
+     * @return activity_type_name
      */
-    public String getUserName() {
-        return userName;
+    public String getActivityTypeName() {
+        return activityTypeName;
     }
 
     /**
-     * @param userName
+     * @param activityTypeName
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    /**
-     * @return user_password
-     */
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    /**
-     * @param userPassword
-     */
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    /**
-     * @return user_phone_number
-     */
-    public BigInteger getUserPhoneNumber() {
-        return userPhoneNumber;
-    }
-
-    /**
-     * @param userPhoneNumber
-     */
-    public void setUserPhoneNumber(BigInteger userPhoneNumber) {
-        this.userPhoneNumber = userPhoneNumber;
+    public void setActivityTypeName(String activityTypeName) {
+        this.activityTypeName = activityTypeName;
     }
 
     /**
@@ -141,12 +103,10 @@ public class usertb implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        usertb other = (usertb) that;
+        ActivityConfig other = (ActivityConfig) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
-            && (this.getUserPassword() == null ? other.getUserPassword() == null : this.getUserPassword().equals(other.getUserPassword()))
-            && (this.getUserPhoneNumber() == null ? other.getUserPhoneNumber() == null : this.getUserPhoneNumber().equals(other.getUserPhoneNumber()))
+            && (this.getActivityTypeId() == null ? other.getActivityTypeId() == null : this.getActivityTypeId().equals(other.getActivityTypeId()))
+            && (this.getActivityTypeName() == null ? other.getActivityTypeName() == null : this.getActivityTypeName().equals(other.getActivityTypeName()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
@@ -156,10 +116,8 @@ public class usertb implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
-        result = prime * result + ((getUserName() == null) ? 0 : getUserName().hashCode());
-        result = prime * result + ((getUserPassword() == null) ? 0 : getUserPassword().hashCode());
-        result = prime * result + ((getUserPhoneNumber() == null) ? 0 : getUserPhoneNumber().hashCode());
+        result = prime * result + ((getActivityTypeId() == null) ? 0 : getActivityTypeId().hashCode());
+        result = prime * result + ((getActivityTypeName() == null) ? 0 : getActivityTypeName().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;
@@ -172,10 +130,8 @@ public class usertb implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", userId=").append(userId);
-        sb.append(", userName=").append(userName);
-        sb.append(", userPassword=").append(userPassword);
-        sb.append(", userPhoneNumber=").append(userPhoneNumber);
+        sb.append(", activityTypeId=").append(activityTypeId);
+        sb.append(", activityTypeName=").append(activityTypeName);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

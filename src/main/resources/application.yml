@@ -27,15 +27,15 @@ server:
 
 #生成的xml需要在此处注册，（存在bug，实际上使用包.*.xml即可，但是出现了问题）
 mybatis:
-  mapper-locations: classpath:sqlMap/TourtbMapper.xml,
+  mapper-locations:  classpath:sqlMap/TourtbMapper.xml,
                     classpath:sqlMap/UsertbMapper.xml,
-                    classpath:sqlMap/CommentstbMapper.xml
-                    classpath:sqlMap/AreatbMapper.xml
+                    classpath:sqlMap/CommentstbMapper.xml,
+                    classpath:sqlMap/TourConfigMapper.xml
   configuration:
     mapUnderscoreToCamelCase: true
-  #七牛云图像存储配置
+#七牛云图像存储配置
 qiniu:
-  accessKey: TcdYzawyHUr6B7-0J-IHaW4CHgKK_VGWR2A75CdV
+  accessKey :  TcdYzawyHUr6B7-0J-IHaW4CHgKK_VGWR2A75CdV
   secretKey: ot9p_yHwX7NADp-OZQ5Ekw1qttq6oXp8oETp5u0Y
   bucket: iimage
   path: phk8c13oo.bkt.clouddn.com
@@ -43,3 +43,4 @@ qiniu:
 DX:
   accessKeyId: LTAIzLYbEWAj5jcZ
   accessKeySecret: cF1HRFRjlxljjcf6ypkHmk4RTn6Gqf
+

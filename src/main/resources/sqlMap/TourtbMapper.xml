@@ -11,14 +11,14 @@
           tour_pic as tourPic,
           comments_id as commentsId,
           tour_tb.tour_area_id as tourAreaId,
-          area_tb.tour_area_name as tourAreaName,
-          area_tb.tour_country_id as tourCountryId,
+          tour_config.tour_area_name as tourAreaName,
+          tour_config.tour_country_id as tourCountryId,
           tour_giveALike as tourGiveALike,
           tour_tb.create_time as createTime,
           tour_tb.update_time as updateTime
         FROM tour_tb
-        left join     area_tb
-        on tour_tb.tour_area_id=area_tb.tour_area_id
+        left join     tour_config
+        on tour_tb.tour_area_id=tour_config.tour_area_id
     </select>
     <select id="selectByOne"
             parameterType="com.theoldsweb.myweb.common.dto.TourtbDto"

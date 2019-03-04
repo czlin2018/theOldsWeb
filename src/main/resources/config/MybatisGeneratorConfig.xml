@@ -15,7 +15,7 @@
 
     <!-- 数据库驱动包位置 -->
     <classPathEntry
-        location="/home/czl/.m2/repository/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar"/>
+        location="/home/czl/文档/theOldsWeb/src/main/resources/mysql-connector-java-6.0.6.jar"/>
 
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
         <!-- TKmybatis配置 -->
@@ -48,9 +48,15 @@
         <!-- 要生成的表（可以使用多个table标签生成多张表） -->
 
         <!--<table tableName="user_tb" domainObjectName="usertb"></table>-->
-        <table tableName="tour_tb" domainObjectName="tourtb"></table>
-        <table tableName="comments_tb" domainObjectName="commentstb"></table>
-        <table tableName="area_tb" domainObjectName="areatb"></table>
+        <table tableName="activity" domainObjectName="Activity"></table>
+        <table tableName="activity_config" domainObjectName="ActivityConfig"></table>
+        <table tableName="all_type_config" domainObjectName="AllTypeConfig"></table>
+        <table tableName="love" domainObjectName="Love"></table>
+        <table tableName="love_config" domainObjectName="LoveConfig"></table>
+        <table tableName="news" domainObjectName="News"></table>
+        <table tableName="news_config" domainObjectName="NewsConfig"></table>
+        <table tableName="video" domainObjectName="Video"></table>
+        <table tableName="video_config" domainObjectName="VideoConfig"></table>
 
     </context>
 </generatorConfiguration>

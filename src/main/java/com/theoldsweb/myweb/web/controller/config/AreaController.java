@@ -2,7 +2,7 @@ package com.theoldsweb.myweb.web.controller.config;
 
 import com.theoldsweb.myweb.common.config.PageDto;
 import com.theoldsweb.myweb.common.config.ResultDto;
-import com.theoldsweb.myweb.common.dto.AreaDto;
+import com.theoldsweb.myweb.common.dto.TourConfigDto;
 import com.theoldsweb.myweb.common.url.Url;
 import com.theoldsweb.myweb.web.service.config.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @创建时间: 下午12:20
  */
 @RestController
-public class AreaController {
+public class AreaController{
     @Autowired
     private AreaService areaService;
     /**
@@ -34,8 +34,8 @@ public class AreaController {
      * 新增
      */
     @PostMapping(Url.area.insert)
-    public ResultDto insert( @RequestBody AreaDto areaDto ){
-        return areaService.insert( areaDto );
+    public ResultDto insert( @RequestBody TourConfigDto tourConfigDto){
+        return areaService.insert(tourConfigDto);
     }
     /**
      * 删除
@@ -48,7 +48,7 @@ public class AreaController {
      * 修改
      */
     @PostMapping(Url.area.update)
-    public ResultDto update( @RequestBody AreaDto areaDto ){
-        return areaService.update( areaDto );
+    public ResultDto update( @RequestBody TourConfigDto tourConfigDto){
+        return areaService.update(tourConfigDto);
     }
 }
