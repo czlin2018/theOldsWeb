@@ -4,7 +4,7 @@ import com.theoldsweb.myweb.common.config.PageDto;
 import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.dto.CommentsDto;
 import com.theoldsweb.myweb.common.url.Url;
-import com.theoldsweb.myweb.web.service.config.commentsService;
+import com.theoldsweb.myweb.web.service.config.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CommentsController {
     @Autowired
-    private commentsService commentsService;
+    private CommentsService commentsService;
     /**
      * 查询
      */

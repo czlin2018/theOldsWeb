@@ -27,9 +27,10 @@ server:
 
 #生成的xml需要在此处注册，（存在bug，实际上使用包.*.xml即可，但是出现了问题）
 mybatis:
-  mapper-locations: classpath:sqlMap/tourtbMapper.xml,
-                    classpath:sqlMap/usertbMapper.xml,
-                    classpath:sqlMap/commentstbMapper.xml
+  mapper-locations: classpath:sqlMap/TourtbMapper.xml,
+                    classpath:sqlMap/UsertbMapper.xml,
+                    classpath:sqlMap/CommentstbMapper.xml
+                    classpath:sqlMap/AreatbMapper.xml
   configuration:
     mapUnderscoreToCamelCase: true
   #七牛云图像存储配置
