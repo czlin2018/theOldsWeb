@@ -19,4 +19,5 @@ public class NewsDto extends News{
     private List comments;
 
     private Integer selectType;
+
 }

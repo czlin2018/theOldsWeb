@@ -23,6 +23,15 @@ public class logininAndLoginupController{
     @Autowired
     private LogininAndLoginupService logininAndLoginupService;
 
+
+    /**
+     * 登陆
+     */
+    @PostMapping(Url.user.index)
+    public ResultDto index( ){
+        return logininAndLoginupService.index ( );
+    }
+
     /**
      * 登陆
      */

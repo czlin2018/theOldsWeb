@@ -2,16 +2,17 @@ package com.theoldsweb.myweb.common.entity;
 
 import lombok.Data;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
 @Data
 @Table(name = "activity")
 public class Activity implements Serializable {
     private Integer id;
 
     @Column(name = "activity_id")
-    private Integer activityId;
+    private String activityId;
 
     @Column(name = "activity_title")
     private String activityTitle;
@@ -20,7 +21,14 @@ public class Activity implements Serializable {
     private String activityContent;
 
     @Column(name = "activity_time")
-    private Date activityTime;
+    private String activityTime;
+
+    @Column(name = "activity_classification")
+    private String activityClassification;
+
+    @Column(name = "activity_style")
+    private String activityStyle;
+
 
     @Column(name = "activity_address")
     private String activityAddress;
@@ -32,7 +40,7 @@ public class Activity implements Serializable {
     private String activityCondition;
 
     @Column(name = "activity_phone")
-    private Integer activityPhone;
+    private String activityPhone;
 
     @Column(name = "activity_number_of_people")
     private Integer activityNumberOfPeople;

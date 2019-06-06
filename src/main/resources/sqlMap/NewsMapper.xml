@@ -20,32 +20,44 @@
 
   <select id="getList" resultType="com.theoldsweb.myweb.common.dto.NewsDto">
     select
-    *
+    `id`,
+    `new_id` as newId,
+    `new_title` as newTitle,
+    `new_digest` as newDigest,
+    `new_main_body` as newMainBody ,
+    `new_pic` as newPic,
+    `comments_id` as commentsId,
+    `new_type` as newType,
+    `new_giveALike` as newGivealike,
+    `create_time` as createTime,
+    `update_time` as updateTime
     from
     news
-    <choose>
-      <when test="selectType==1">
-        where new_type=#{newsDto.newType}
-      </when>
-      <when test="selectType==2">
-        order by new_giveALike desc
-      </when>
-      <when test="selectType==3">
-        order by LENGTH(comments_id) desc
-      </when>
-      <when test="selectType==4">
-        order by create_time desc
-      </when>
-    </choose>
-    ;
+    <where>
+      <if test="newsDto.newId!=null and newsDto.newId!='' ">
+        new_id=#{newsDto.newId}
+      </if>
+      <if test="newsDto.newType!=null and newsDto.newType!=''">
+        and new_type=#{newsDto.newType}
+      </if>
+    </where>
+    <if test="newsDto.selectType==1">
+      order by new_giveALike desc
+    </if>
+    <if test="newsDto.selectType==2">
+      order by create_time desc
+    </if>
+
   </select>
   <update id="updateCommentsByNewId">
-       UPDATE `news`
+       UPDATE `theOlds`.`news`
         SET
         `comments_id` =CONCAT(comments_id,',',#{commentsId}),
-        `update_time` = #{ date }
+         `new_giveALike`=new_giveALike+1,
+        `update_time` = #{ currentDateTime }
         WHERE
             `new_id` = #{newsId};
+
   </update>
 
 </mapper>

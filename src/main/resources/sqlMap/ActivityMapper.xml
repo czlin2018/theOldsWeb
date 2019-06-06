@@ -7,7 +7,7 @@
     -->
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
-    <result column="activity_title" jdbcType="VARCHAR" property="activityTitle" />
+      <result column="activity_title" jdbcType="VARCHAR" property="activityTitle"/>
     <result column="activity_content" jdbcType="VARCHAR" property="activityContent" />
     <result column="activity_time" jdbcType="DATE" property="activityTime" />
     <result column="activity_address" jdbcType="VARCHAR" property="activityAddress" />
@@ -20,4 +20,33 @@
     <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+    <select id="getList" resultType="com.theoldsweb.myweb.common.dto.ActivityDto">
+        select
+        `id` as id,
+        `activity_id` as activityId,
+        `activity_title` as activityTitle,
+        `activity_content` as activityContent,
+        `activity_style` as activityStyle,
+        `activity_classification` as activityClassification,
+        `activity_time` as activityTime,
+        `activity_address` as activityAddress,
+        `activity_ower` as activityOwer,
+        `activity_condition` as activityCondition,
+        `activity_phone` as activityPhone,
+        `activity_number_of_people` as activityNumberOfPeople,
+        `activity_has_people` as activityHasPeople,
+        `activity_status` as activityStatus,
+        `creat_time` as creatTime,
+        `update_time` as updateTime
+        from
+        activity
+        <where>
+            <if test="activityDto.activityClassification !=null and activityDto.activityClassification !=''">
+                activity_classification=#{activityDto.activityClassification}
+            </if>
+            <if test="activityDto.activityStyle !=null and activityDto.activityStyle !=''">
+                and activity_style=#{activityDto.activityStyle}
+            </if>
+        </where>
+    </select>
 </mapper>

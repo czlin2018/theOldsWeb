@@ -44,13 +44,15 @@ public class NewsService{
      * @return
      */
     public ResultDto getNewsList (PageDto pageDto, NewsDto newsDto1){
+        Page<Object> objectPage = PageHelper.startPage ( pageDto.getPageNo ( ) , pageDto.getPageSize ( ) );
         List< NewsDto > newsDtoList = newsMapper.getList(newsDto1);
         for(NewsDto newsDto : newsDtoList){
 
             //查询评价
             newsDto.setCommentsNum(0);
-            if(newsDto.getCommentsId() != null){
-                String[] commentsIds = newsDto.getCommentsId().split(",");
+            if ( ! "".equals ( newsDto.getCommentsId ( ) ) ) {
+                String substring = newsDto.getCommentsId ( ).substring ( 1 , newsDto.getCommentsId ( ).length ( ) );
+                String[] commentsIds = substring.split ( "," );
                 newsDto.setCommentsNum(commentsIds.length);
                 List< CommentsDto > commentstbList = new ArrayList<>();
                 for(String commentsId : commentsIds){
@@ -61,7 +63,7 @@ public class NewsService{
             }
 
         }
-        Page< Object > objectPage = PageHelper.startPage(pageDto.getPageNo(), pageDto.getPageSize());
+
         pageDto.setTotalCount(objectPage.getTotal());
         pageDto.setPageData(newsDtoList);
         return new ResultDto(SysExcCode.SysCommonExcCode.SYS_SUCCESS, pageDto);
@@ -82,7 +84,7 @@ public class NewsService{
         news.setCreateTime(DateApi.currentDateTime());
         news.setUpdateTime(DateApi.currentDateTime());
         news.setNewGivealike(0);
-        int insert = newsMapper.insert(newsDto);
+        int insert = newsMapper.insert ( news );
         if(insert > 0){
             return new ResultDto(SysExcCode.SysCommonExcCode.SYS_SUCCESS, "添加成功");
         }else{
@@ -118,7 +120,6 @@ public class NewsService{
             return new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "评论失败");
         }
         return new ResultDto(SysExcCode.SysCommonExcCode.SYS_SUCCESS, "评论成功");
-
 
     }
 }

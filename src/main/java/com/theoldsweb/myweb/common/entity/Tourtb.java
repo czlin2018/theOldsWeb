@@ -34,7 +34,7 @@ public class Tourtb implements Serializable {
      * 关联评论表,用评论表
      */
     @Column(name = "comments_id")
-    private String commentsId;
+    private String commentsId = "";
 
     @Column(name = "tour_area_id")
     private Integer tourAreaId;

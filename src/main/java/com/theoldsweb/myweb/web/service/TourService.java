@@ -52,8 +52,9 @@ public class TourService {
 
             //查询评价
             tourtbDto.setCommentsNum ( 0 );
-            if ( tourtbDto.getCommentsId ( ) != null ) {
-                String[] commentsIds = tourtbDto.getCommentsId ( ).split ( "," );
+            if ( ! "".equals ( tourtbDto.getCommentsId ( ) ) ) {
+                String substring = tourtbDto.getCommentsId ( ).substring ( 1 , tourtbDto.getCommentsId ( ).length ( ) );
+                String[] commentsIds = substring.split ( "," );
                 tourtbDto.setCommentsNum ( commentsIds.length );
                 List<CommentsDto> commentstbList = new ArrayList<> ( );
                 for ( String commentsId : commentsIds ) {
@@ -64,7 +65,7 @@ public class TourService {
             }
 
             //对上国内国外
-            if ( (tourtbDto.getTourCountryId ( ) == 1) ) {
+            if ( ("1".equals ( tourtbDto.getTourCountryId ( ).toString ( ) )) ) {
                 tourtbDto.setTourCountryName ( "国内" );
             } else{
                 tourtbDto.setTourCountryName ( "国外" );
@@ -131,4 +132,5 @@ public class TourService {
 
 
     }
+
 }

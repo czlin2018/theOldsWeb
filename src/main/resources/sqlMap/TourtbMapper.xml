@@ -24,42 +24,47 @@
             parameterType="com.theoldsweb.myweb.common.dto.TourtbDto"
             resultType="com.theoldsweb.myweb.common.dto.TourtbDto">
          SELECT
-          id,
-          tour_id as tourId,
-          tour_title as tourTitle,
-          tour_digest as tourDigest,
-          tour_main_body as tourMainBody,
-          tour_pic as tourPic,
-        comments_id as commentsId,
-        country_id as countryId,
-          tour_comments_num as tourCommentsNum,
-          tour_area_id  as tourAreaId,
-          tour_giveALike as tourGiveALike,
-          create_time as createTime,
-          update_time as updateTime
-        FROM tour_tb
-        <choose>
-            <when test="selectType==1">
-                where tour_country_id=1
-            </when>
-            <when test="selectType==2">
-                where tour_country_id=2
-            </when>
-            <when test="selectType==3">
-                order by tour_giveALike desc
-            </when>
-            <when test="selectType==4">
-                order by LENGTH(tour_comments_num) desc
-            </when>
-            <when test="selectType==5">
-                order by create_time desc
-            </when>
-        </choose>
+        tt.id,
+        tt.tour_id as tourId,
+        tt.tour_title as tourTitle,
+        tt.tour_digest as tourDigest,
+        tt.tour_main_body as tourMainBody,
+        tt.tour_pic as tourPic,
+        tt.comments_id as commentsId,
+        tour_config.tour_country_id as tourCountryId,
+        tour_config.tour_area_name as tourAreaName,
+        tt.tour_area_id as tourAreaId,
+        tt.tour_giveALike as tourGiveALike,
+        tt.create_time as createTime,
+        tt.update_time as updateTime
+        FROM tour_tb tt
+        left join tour_config
+        on tt.tour_area_id=tour_config.tour_area_id
+        <where>
+            <if test="tourId!=null and tourId!='' ">
+                tt.tour_id=#{tourId}
+            </if>
+
+            <if test="selectType==1">
+                and tour_config.tour_country_id=1
+            </if>
+            <if test="selectType==2">
+                and tour_config.tour_country_id=2
+            </if>
+        </where>
+        <if test="selectType==3">
+            order by tt.tour_giveALike desc
+        </if>
+        <if test="selectType==4">
+            order by tt.create_time desc
+        </if>
+
     </select>
     <update id="updateCommentsByTourId">
-      UPDATE `tour_tb`
+      UPDATE `theOlds`.`tour_tb`
         SET
         `comments_id` =CONCAT(comments_id,',',#{commentsId}),
+        `tour_giveALike`=tour_giveALike+1,
         `update_time` = #{ date }
         WHERE
             `tour_id` = #{tourId};

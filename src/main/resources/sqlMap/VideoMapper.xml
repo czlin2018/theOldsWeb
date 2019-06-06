@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.theoldsweb.myweb.web.mapper.VideoMapper">
-  <resultMap id="BaseResultMap" type="com.theoldsweb.myweb.common.entity.Video">
+    <resultMap id="BaseResultMap" type="com.theoldsweb.myweb.common.entity.Video">
     <!--
       WARNING - @mbg.generated
     -->
@@ -10,8 +10,43 @@
     <result column="video_title" jdbcType="VARCHAR" property="videoTitle" />
     <result column="video_ower" jdbcType="VARCHAR" property="videoOwer" />
     <result column="comments_id" jdbcType="VARCHAR" property="commentsId" />
-    <result column="tour_giveALike" jdbcType="INTEGER" property="tourGivealike" />
+        <result column="video_giveALike" jdbcType="INTEGER" property="videoGivealike"/>
     <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+    <update id="updateCommentsByNewId">
+
+       UPDATE `theOlds`.`video`
+        SET
+        `comments_id` =CONCAT(comments_id,',',#{commentsId}),
+         `video_giveALike`=video_giveALike+1,
+        `update_time` = #{ currentDateTime }
+        WHERE
+            `video_id` = #{videoId};
+  </update>
+
+    <select id="getList" resultType="com.theoldsweb.myweb.common.dto.VideoDto">
+        select
+        `id` as id,
+        `video_id` as videoId,
+        `url` as url,
+        `video_title` as videoTitle,
+        `video_ower` as videoOwer,
+        `video_classification` as videoClassification,
+        `video_style` as videoStyle,
+        `comments_id` as commentsId,
+        `video_giveALike` as videoGivealike,
+        `creat_time` as creatTime,
+        `update_time` as updateTime
+        from
+        video
+        <where>
+            <if test="videoDto.videoClassification !=null and videoDto.videoClassification !=''">
+                video_classification=#{videoDto.activityClassification}
+            </if>
+            <if test="videoDto.videoStyle !=null and videoDto.videoStyle !=''">
+                and video_style=#{videoDto.videoStyle}
+            </if>
+        </where>
+    </select>
 </mapper>

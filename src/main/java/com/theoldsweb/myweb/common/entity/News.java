@@ -2,9 +2,10 @@ package com.theoldsweb.myweb.common.entity;
 
 import lombok.Data;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
 
 @Data
 @Table(name = "news")
@@ -45,7 +46,7 @@ public class News implements Serializable {
      * 关联评论表,用评论表
      */
     @Column(name = "comments_id")
-    private String commentsId;
+    private String commentsId = "";
 
     /**
      * 新闻类型

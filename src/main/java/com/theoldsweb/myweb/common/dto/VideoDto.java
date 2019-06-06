@@ -1,9 +1,21 @@
 package com.theoldsweb.myweb.common.dto;
 
 import com.theoldsweb.myweb.common.entity.Video;
+import lombok.Data;
 
-import javax.persistence.Column;
-import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
-public class VideoDto extends Video{}
+@Data
+public class VideoDto extends Video {
+    /**
+     * 评价数量
+     */
+    private Integer commentsNum;
+
+    /**
+     * 评价内容
+     */
+    private List comments;
+
+    private Integer selectType;
+}

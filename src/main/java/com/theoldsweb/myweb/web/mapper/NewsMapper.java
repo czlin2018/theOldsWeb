@@ -10,7 +10,8 @@ import java.util.List;
 
 public interface NewsMapper extends Mapper<News> {
 
-    void updateCommentsByNewId (@Param("newsId") String newsId, @Param("commentsId") String commentsId, @Param("currentDateTime") Date currentDateTime);
+    void updateCommentsByNewId( @Param("newsId") String newsId , @Param("commentsId") String commentsId ,
+                                @Param("currentDateTime") Date currentDateTime );
 
     List< NewsDto > getList (@Param("newsDto") NewsDto newsDto);
 }
