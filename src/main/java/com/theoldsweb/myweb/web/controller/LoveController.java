@@ -40,4 +40,20 @@ public class LoveController {
     public ResultDto insert( @RequestBody LoveDto loveDto ){
         return loveService.insert ( loveDto );
     }
+
+    /**
+     * 删除
+     */
+    @GetMapping(value = Url.love.del)
+    public ResultDto del( String loveId ){
+        return loveService.del ( loveId );
+    }
+
+    /**
+     * 审核
+     */
+    @GetMapping(value = Url.love.update)
+    public ResultDto update( String loveId ){
+        return loveService.update ( loveId );
+    }
 }

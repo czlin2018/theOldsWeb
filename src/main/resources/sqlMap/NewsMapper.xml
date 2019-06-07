@@ -17,6 +17,9 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+  <delete id="del">
+       DELETE FROM news WHERE new_id = #{newsId}
+  </delete>
 
   <select id="getList" resultType="com.theoldsweb.myweb.common.dto.NewsDto">
     select

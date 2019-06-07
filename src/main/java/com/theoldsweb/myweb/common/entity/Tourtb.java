@@ -30,6 +30,9 @@ public class Tourtb implements Serializable {
     @Column(name = "tour_pic")
     private String tourPic;
 
+    @Column(name = "tour_contry_id")
+    private Integer tourCountryId;
+
     /**
      * 关联评论表,用评论表
      */

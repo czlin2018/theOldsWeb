@@ -2,9 +2,10 @@ package com.theoldsweb.myweb.common.entity;
 
 import lombok.Data;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
 @Data
 @Table(name = "all_type_config")
 public class AllTypeConfig implements Serializable {
@@ -15,6 +16,9 @@ public class AllTypeConfig implements Serializable {
 
     @Column(name = "type_name")
     private String typeName;
+
+    @Column(name = "level")
+    private Integer level;
 
     /**
      * 1-旅游 2-新闻 3-观影 4附近定位 5-爱心社区 6-活动

@@ -43,12 +43,31 @@ public class LoveService {
         love.setLoveId ( "l" + DateApi.getTimeId ( ) );
         love.setCreatTime ( DateApi.currentDateTime ( ) );
         love.setUpdateTime ( DateApi.currentDateTime ( ) );
-        love.setLovestatus ( 0 );
+        love.setLovestatus ( 1 );
         int insert = loveMapper.insert ( love );
         if ( insert > 0 ) {
             return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_SUCCESS , "添加成功" );
         } else {
             return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "添加成功" );
+        }
+    }
+
+    public ResultDto del( String loveId ){
+        int del = loveMapper.del ( loveId );
+        if ( del > 0 ) {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_SUCCESS , "删除成功" );
+        } else {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "删除失败" );
+        }
+
+    }
+
+    public ResultDto update( String loveId ){
+        int update = loveMapper.update ( loveId , DateApi.currentDateTime ( ) );
+        if ( update > 0 ) {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_SUCCESS , "审核成功" );
+        } else {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "审核失败" );
         }
     }
 }

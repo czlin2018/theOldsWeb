@@ -13,4 +13,7 @@ public interface VideoMapper extends Mapper<Video> {
 
     void updateCommentsByNewId( @Param("videoId") String videoId , @Param("commentsId") String commentsId ,
                                 @Param("currentDateTime") Date currentDateTime );
+
+    int del( @Param("videoId") String videoId );
+
 }

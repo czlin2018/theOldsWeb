@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 public interface TourtbMapper extends Mapper< Tourtb > {
 
-    List<TourtbDto> getList( );
 
 
     List<TourtbDto> selectByOne( TourtbDto tourtbDto );
@@ -20,4 +19,7 @@ public interface TourtbMapper extends Mapper< Tourtb > {
     void updateCommentsByTourId( @Param("tourId") String tourId ,
                                  @Param("commentsId") String commentsId ,
                                  @Param("date") Date date );
+
+    int del( @Param("tourId") String tourId );
+
 }

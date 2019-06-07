@@ -24,6 +24,9 @@
         WHERE
             `video_id` = #{videoId};
   </update>
+    <delete id="del">
+       DELETE FROM video WHERE video_id = #{videoId}
+    </delete>
 
     <select id="getList" resultType="com.theoldsweb.myweb.common.dto.VideoDto">
         select

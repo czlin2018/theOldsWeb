@@ -14,4 +14,6 @@ public interface NewsMapper extends Mapper<News> {
                                 @Param("currentDateTime") Date currentDateTime );
 
     List< NewsDto > getList (@Param("newsDto") NewsDto newsDto);
+
+    int del( @Param("newsId") String newsId );
 }

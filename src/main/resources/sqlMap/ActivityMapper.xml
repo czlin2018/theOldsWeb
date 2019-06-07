@@ -20,6 +20,9 @@
     <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+    <delete id="del">
+        DELETE FROM activity WHERE activity_id = #{activityId}
+    </delete>
     <select id="getList" resultType="com.theoldsweb.myweb.common.dto.ActivityDto">
         select
         `id` as id,

@@ -122,4 +122,13 @@ public class NewsService{
         return new ResultDto(SysExcCode.SysCommonExcCode.SYS_SUCCESS, "评论成功");
 
     }
+
+    public ResultDto del( String newsId ){
+        int del = newsMapper.del ( newsId );
+        if ( del > 0 ) {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_SUCCESS , "删除成功" );
+        } else {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "删除失败" );
+        }
+    }
 }

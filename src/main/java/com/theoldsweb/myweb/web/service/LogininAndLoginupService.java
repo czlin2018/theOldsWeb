@@ -8,11 +8,13 @@ import com.theoldsweb.myweb.common.config.ResultDto;
 import com.theoldsweb.myweb.common.config.SysExcCode;
 import com.theoldsweb.myweb.common.dto.*;
 import com.theoldsweb.myweb.common.entity.Usertb;
+import com.theoldsweb.myweb.web.controller.common.SendEmail;
 import com.theoldsweb.myweb.web.mapper.UsertbMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +48,29 @@ public class LogininAndLoginupService{
 
     @Autowired
     private RedisUtil redisUtil;
+
+
+    /**
+     * 获得验证码
+     *
+     * @param userId 用户id (邮箱)
+     * @return
+     */
+    public ResultDto getVerificationCode( String userId ){
+        String verificationCode = DateApi.getTimeId ( );
+
+        //注册在redis
+        redisUtil.register ( userId , verificationCode );
+
+        //发送电子邮件
+        try {
+            SendEmail.send ( userId , verificationCode );
+        } catch (GeneralSecurityException e) {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "获取失败" );
+        }
+        return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_SUCCESS , verificationCode );
+
+    }
 
 
     /**
@@ -134,7 +159,7 @@ public class LogininAndLoginupService{
         Usertb usertb=new Usertb();
         BeanCopyUtil.copy(userDao,usertb);
 
-        usertb.setUserId( "c"+ DateApi.getTimeId( ) );
+        usertb.setUserId ( userDao.getUserId ( ) );
         usertb.setCreateTime( DateApi.currentDateTime() );
         usertb.setUpdateTime( DateApi.currentDateTime() );
         int count=usertbMapper.insert(usertb);
@@ -166,6 +191,33 @@ public class LogininAndLoginupService{
             return new ResultDto(SysExcCode.SysCommonExcCode.SYS_ERROR, "修改失败");
         }
     }
+
+    /**
+     * 修改
+     *
+     * @param userDto
+     * @return
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public ResultDto forget( UserDto userDto ){
+        //从redis取得验证码,判断验证码是否正确
+        Object verificationCode = redisUtil.find ( userDto.getUserId ( ) );
+        if ( ! userDto.getVerificationCode ( ).equals ( verificationCode ) ) {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "验证码输入不正确" );
+        }
+
+        Usertb usertb = new Usertb ( );
+        BeanCopyUtil.copy ( userDto , usertb );
+        usertb.setUpdateTime ( DateApi.currentDateTime ( ) );
+        int count = usertbMapper.updateByPrimaryKeySelective ( usertb );
+        if ( count != 0 ) {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "修改成功" );
+        } else {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "修改失败" );
+        }
+    }
+
+
 
     /**
      * 检查是否存在

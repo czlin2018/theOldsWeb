@@ -52,5 +52,13 @@ public class TourController{
         return toutService.tourCommentsAdd ( praamMap );
     }
 
+    /**
+     * 删除
+     */
+    @GetMapping(value = Url.tour.del)
+    public ResultDto del( String tourId ){
+        return toutService.del ( tourId );
+    }
+
 
 }

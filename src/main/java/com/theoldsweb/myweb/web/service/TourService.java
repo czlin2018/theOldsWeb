@@ -11,7 +11,6 @@ import com.theoldsweb.myweb.common.dto.CommentsDto;
 import com.theoldsweb.myweb.common.dto.TourtbDto;
 import com.theoldsweb.myweb.common.entity.Commentstb;
 import com.theoldsweb.myweb.common.entity.Tourtb;
-import com.theoldsweb.myweb.web.mapper.AreatbMapper;
 import com.theoldsweb.myweb.web.mapper.CommentstbMapper;
 import com.theoldsweb.myweb.web.mapper.TourtbMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +33,7 @@ import java.util.Map;
 public class TourService {
     @Autowired
     private TourtbMapper tourtbMapper;
-    @Autowired
-    private AreatbMapper areatbMapper;
+
     @Autowired
     private CommentstbMapper commentstbMapper;
 
@@ -64,12 +62,6 @@ public class TourService {
                 tourtbDto.setComments ( commentstbList );
             }
 
-            //对上国内国外
-            if ( ("1".equals ( tourtbDto.getTourCountryId ( ).toString ( ) )) ) {
-                tourtbDto.setTourCountryName ( "国内" );
-            } else{
-                tourtbDto.setTourCountryName ( "国外" );
-            }
 
         }
         Page<Object> objectPage = PageHelper.startPage(pageDto.getPageNo(), pageDto.getPageSize());
@@ -93,6 +85,7 @@ public class TourService {
         tourtb.setCreateTime( DateApi.currentDateTime() );
         tourtb.setUpdateTime( DateApi.currentDateTime() );
         tourtb.setTourGivealike( 0 );
+        tourtb.setCommentsId ( "" );
         int insert=tourtbMapper.insert( tourtb );
         if(insert>0){
             return new ResultDto( SysExcCode.SysCommonExcCode.SYS_SUCCESS,"添加成功" );
@@ -133,4 +126,12 @@ public class TourService {
 
     }
 
+    public ResultDto del( String tourId ){
+        int del = tourtbMapper.del ( tourId );
+        if ( del > 0 ) {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_SUCCESS , "删除成功" );
+        } else {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "删除失败" );
+        }
+    }
 }

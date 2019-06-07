@@ -20,8 +20,8 @@ public class Love implements Serializable {
     @Column(name = "love_content")
     private String loveContent;
 
-    @Column(name = "love_classification")
-    private String loveClassification;
+    @Column(name = "love_area_id")
+    private String loveAreaId;
 
     @Column(name = "love_style")
     private String loveStyle;

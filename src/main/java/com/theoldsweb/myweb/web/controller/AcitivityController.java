@@ -40,4 +40,13 @@ public class AcitivityController {
     public ResultDto insert( @RequestBody ActivityDto activityDto ){
         return activityService.insert ( activityDto );
     }
+
+
+    /**
+     * 删除
+     */
+    @GetMapping(value = Url.activity.del)
+    public ResultDto del( String activityId ){
+        return activityService.del ( activityId );
+    }
 }

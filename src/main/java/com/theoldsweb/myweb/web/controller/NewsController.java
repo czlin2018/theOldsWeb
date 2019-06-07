@@ -49,4 +49,12 @@ public class NewsController{
         return newsService.newsCommentsAdd(praamMap);
     }
 
+    /**
+     * 删除
+     */
+    @GetMapping(value = Url.news.del)
+    public ResultDto del( String newsId ){
+        return newsService.del ( newsId );
+    }
+
 }

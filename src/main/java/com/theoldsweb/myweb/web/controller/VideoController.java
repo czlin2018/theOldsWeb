@@ -50,4 +50,12 @@ public class VideoController {
     public ResultDto newsCommentsAdd( @RequestBody Map<String, String> praamMap ){
         return videoService.videoCommentsAdd ( praamMap );
     }
+
+    /**
+     * 删除
+     */
+    @GetMapping(value = Url.video.del)
+    public ResultDto del( String videoId ){
+        return videoService.del ( videoId );
+    }
 }

@@ -5,6 +5,7 @@ import com.theoldsweb.myweb.common.dto.UserDto;
 import com.theoldsweb.myweb.common.url.Url;
 import com.theoldsweb.myweb.web.service.LogininAndLoginupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,18 @@ public class logininAndLoginupController{
 
 
     /**
-     * 登陆
+     * 获得验证码
+     *
+     * @param userId 用户id (邮箱)
+     * @return
+     */
+    @GetMapping(value = Url.user.getVerificationCode)
+    public ResultDto getVerificationCode( String userId ){
+        return logininAndLoginupService.getVerificationCode ( userId );
+    }
+
+    /**
+     * 主页
      */
     @PostMapping(Url.user.index)
     public ResultDto index( ){
@@ -53,5 +65,13 @@ public class logininAndLoginupController{
     @PostMapping(Url.user.update)
     public ResultDto updateByUserId( @RequestBody UserDto userDao ){
         return logininAndLoginupService.updateByUserId(userDao);
+    }
+
+    /**
+     * 忘记密码(密码)
+     */
+    @PostMapping(Url.user.forget)
+    public ResultDto forget( @RequestBody UserDto userDao ){
+        return logininAndLoginupService.forget ( userDao );
     }
 }

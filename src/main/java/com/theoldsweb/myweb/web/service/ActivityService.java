@@ -47,7 +47,17 @@ public class ActivityService {
         if ( insert > 0 ) {
             return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_SUCCESS , "添加成功" );
         } else {
-            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "添加成功" );
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "添加失败" );
         }
+    }
+
+    public ResultDto del( String activityId ){
+        int del = activityMapper.del ( activityId );
+        if ( del > 0 ) {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_SUCCESS , "删除成功" );
+        } else {
+            return new ResultDto ( SysExcCode.SysCommonExcCode.SYS_ERROR , "删除失败" );
+        }
+
     }
 }

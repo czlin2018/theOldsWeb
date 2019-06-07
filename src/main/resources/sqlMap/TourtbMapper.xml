@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.theoldsweb.myweb.web.mapper.TourtbMapper">
+    <delete id="del">
+        DELETE FROM tour_tb WHERE tour_id = #{tourId}
+    </delete>
 
-    <select id="getList" resultType="com.theoldsweb.myweb.common.dto.TourtbDto">
-         SELECT
-          tour_id as tourId,
-          tour_title as tourTitle,
-          tour_digest as tourDigest,
-          tour_main_body as tourMainBody,
-          tour_pic as tourPic,
-          comments_id as commentsId,
-          tour_tb.tour_area_id as tourAreaId,
-          tour_config.tour_area_name as tourAreaName,
-          tour_config.tour_country_id as tourCountryId,
-          tour_giveALike as tourGiveALike,
-          tour_tb.create_time as createTime,
-          tour_tb.update_time as updateTime
-        FROM tour_tb
-        left join     tour_config
-        on tour_tb.tour_area_id=tour_config.tour_area_id
-    </select>
+
     <select id="selectByOne"
             parameterType="com.theoldsweb.myweb.common.dto.TourtbDto"
             resultType="com.theoldsweb.myweb.common.dto.TourtbDto">
@@ -31,15 +17,18 @@
         tt.tour_main_body as tourMainBody,
         tt.tour_pic as tourPic,
         tt.comments_id as commentsId,
-        tour_config.tour_country_id as tourCountryId,
-        tour_config.tour_area_name as tourAreaName,
-        tt.tour_area_id as tourAreaId,
+        atc.type_name as tourAreaName,
+        atc1.type_name as tourCountryName,
         tt.tour_giveALike as tourGiveALike,
         tt.create_time as createTime,
         tt.update_time as updateTime
         FROM tour_tb tt
-        left join tour_config
-        on tt.tour_area_id=tour_config.tour_area_id
+        left join all_type_config atc
+        on tt.tour_area_id=atc.type_id
+
+        left join all_type_config atc1
+        on tt.tour_contry_id=atc1.type_id
+
         <where>
             <if test="tourId!=null and tourId!='' ">
                 tt.tour_id=#{tourId}

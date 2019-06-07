@@ -30,15 +30,10 @@ mybatis:
   mapper-locations:  classpath:sqlMap/TourtbMapper.xml,
                     classpath:sqlMap/UsertbMapper.xml,
                     classpath:sqlMap/CommentstbMapper.xml,
-                    classpath:sqlMap/TourConfigMapper.xml,
-                    classpath:sqlMap/ActivityConfigMapper.xml,
                     classpath:sqlMap/ActivityMapper.xml,
                     classpath:sqlMap/AllTypeConfigMapper.xml,
-                    classpath:sqlMap/LoveConfigMapper.xml,
                     classpath:sqlMap/LoveMapper.xml,
-                    classpath:sqlMap/NewsConfigMapper.xml,
                     classpath:sqlMap/NewsMapper.xml,
-                    classpath:sqlMap/VideoConfigMapper.xml,
                     classpath:sqlMap/VideoMapper.xml
 
   configuration:
@@ -47,8 +42,8 @@ mybatis:
 qiniu:
   accessKey :  TcdYzawyHUr6B7-0J-IHaW4CHgKK_VGWR2A75CdV
   secretKey: ot9p_yHwX7NADp-OZQ5Ekw1qttq6oXp8oETp5u0Y
-  bucket: iimage
-  path: phk8c13oo.bkt.clouddn.com
+  bucket: image
+  path: pre8k8hry.bkt.clouddn.com
   #短信配置
 DX:
   accessKeyId: LTAIzLYbEWAj5jcZ

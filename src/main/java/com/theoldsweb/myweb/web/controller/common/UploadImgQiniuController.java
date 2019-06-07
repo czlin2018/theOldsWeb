@@ -8,6 +8,7 @@ import com.theoldsweb.myweb.common.url.Url;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
@@ -21,6 +22,7 @@ import java.io.IOException;
  * @创建日期: 2019-01-30
  * @创建时间: 14:07
  */
+@RestController
 public class UploadImgQiniuController {
 
     @Autowired

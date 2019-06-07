@@ -17,6 +17,11 @@ public class UserDto implements Serializable {
 
     private String userPassword;
 
+    /**
+     * 邮箱验证码
+     */
+    private String verificationCode;
+
 
     private BigInteger userPhoneNumber;
 

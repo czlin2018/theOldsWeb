@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.theoldsweb.myweb.web.mapper.LoveMapper">
+  <update id="update">
+  UPDATE `theOlds`.`love`
+  SET
+  `lovestatus` = 1,
+  `update_time` = #{updatTime}
+  WHERE love_id = #{loveId}
+
+  </update>
+  <delete id="del">
+     DELETE FROM love WHERE love_id = #{loveId}
+  </delete>
 
   <select id="getList" resultType="com.theoldsweb.myweb.common.dto.LoveDto">
     select

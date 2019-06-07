@@ -9,4 +9,7 @@ import java.util.List;
 
 public interface ActivityMapper extends Mapper<Activity> {
     List<ActivityDto> getList( @Param("activityDto") ActivityDto activityDto );
+
+    int del( @Param("activityId") String activityId );
+
 }
