@@ -21,7 +21,7 @@
     `love_content` as loveContent,
     `love_time` as loveTime,
     `love_address` as loveAddress,
-    `love_classification` as loveClassification,
+    `love_area_id` as loveAreaId,
     `love_style` as loveStyle,
     `love_ower` as loveOwer,
     `love_condition` as loveCondition,
@@ -33,8 +33,8 @@
     from
     love
     <where>
-      <if test="loveDto.loveClassification !=null and loveDto.loveClassification !=''">
-        love_classification=#{loveDto.loveClassification}
+      <if test="loveDto.loveAreaId !=null and loveDto.loveAreaId !=''">
+        love_area_id=#{loveDto.loveAreaId}
       </if>
       <if test="loveDto.loveStyle !=null and loveDto.loveStyle !=''">
         and love_style=#{loveDto.loveStyle}
