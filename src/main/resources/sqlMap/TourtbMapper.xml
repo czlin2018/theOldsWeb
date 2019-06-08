@@ -35,10 +35,10 @@
             </if>
 
             <if test="selectType==1">
-                and tt.tour_contry_id=1
+                and tour_config.tour_country_id=1
             </if>
             <if test="selectType==2">
-                and tt.tour_contry_id=2
+                and tour_config.tour_country_id=2
             </if>
         </where>
         <if test="selectType==3">
