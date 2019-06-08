@@ -27,14 +27,15 @@ server:
 
 #生成的xml需要在此处注册，（存在bug，实际上使用包.*.xml即可，但是出现了问题）
 mybatis:
-  mapper-locations:  classpath:sqlMap/TourtbMapper.xml,
-                    classpath:sqlMap/UsertbMapper.xml,
-                    classpath:sqlMap/CommentstbMapper.xml,
-                    classpath:sqlMap/ActivityMapper.xml,
-                    classpath:sqlMap/AllTypeConfigMapper.xml,
-                    classpath:sqlMap/LoveMapper.xml,
-                    classpath:sqlMap/NewsMapper.xml,
-                    classpath:sqlMap/VideoMapper.xml
+  mapper-locations:
+    classpath:com/theoldsweb/myweb/web/mapper/TourtbMapper.xml,
+    classpath:com/theoldsweb/myweb/web/mapper/UsertbMapper.xml,
+    classpath:com/theoldsweb/myweb/web/mapper/CommentstbMapper.xml,
+    classpath:com/theoldsweb/myweb/web/mapper/ActivityMapper.xml,
+    classpath:com/theoldsweb/myweb/web/mapper/AllTypeConfigMapper.xml,
+    classpath:com/theoldsweb/myweb/web/mapper/LoveMapper.xml,
+    classpath:com/theoldsweb/myweb/web/mapper/NewsMapper.xml,
+    classpath:com/theoldsweb/myweb/web/mapper/VideoMapper.xml
 
   configuration:
     mapUnderscoreToCamelCase: true
